@@ -6,7 +6,7 @@
 #include <Adafruit_PN532.h>
 #include "RfidDb.h"
 
-RfidDb database = RfidDB(4,8,4);
+RfidDb db = RfidDb(4,8,4);
 
 uint32_t id1 = 0xFFFFFF01;
 
