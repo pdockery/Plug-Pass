@@ -1,12 +1,22 @@
 // Date and time functions using a DS3231 RTC connected via I2C and Wire lib
-#include "RTClib.h"
-#include <EEPROM.h>
-#include <Wire.h>
-#include <SPI.h>
-#include <Adafruit_PN532.h>
-#include "RfidDb.h"
+#include "RTClib.h" // For use with DS3231 to keep time when disconnected 
+#include <EEPROM.h> // For persistent storage of data when disconnected (future charge expiration time, verified key ids, etc.)
+#include <Wire.h> // Used in serial communication
+#include <SPI.h> // Used in serial communication
+#include <Adafruit_PN532.h> // For use with a PN532 to interact with RFID cards
+#include "RfidDb.h" // Database tools for storing ids in EEPROM
 
-RfidDb db = RfidDb(4,8,4);
+// Using an arduino nano we have 1KB of EEPROM
+// We are using the first 4 bytes to store the timestamp when the current valid charge will end
+// Therefore we offset the database 4 bytes
+uint16_t eepromOffset = 4;
+
+// A database designed to store a number of RFIDs of 32 bits up to a fixed
+// size. The database is stored in EEPROM and requires (N * 4) + 2 bytes of 
+// storage where N is the maximum number of entries.
+
+uint8_t maxDbSize = 100;
+RfidDb db = RfidDb(maxDbSize, eepromOffset);
 
 uint32_t id1 = 0xFFFFFF01;
 
