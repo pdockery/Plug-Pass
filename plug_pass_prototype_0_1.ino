@@ -1,12 +1,22 @@
 // Date and time functions using a DS3231 RTC connected via I2C and Wire lib
-#include "RTClib.h"
-#include <EEPROM.h>
-#include <Wire.h>
-#include <SPI.h>
-#include <Adafruit_PN532.h>
-#include "RfidDb.h"
+#include "RTClib.h" // For use with DS3231 to keep time when disconnected 
+#include <EEPROM.h> // For persistent storage of data when disconnected (future charge expiration time, verified key ids, etc.)
+#include <Wire.h> // Used in serial communication
+#include <SPI.h> // Used in serial communication
+#include <Adafruit_PN532.h> // For use with a PN532 to interact with RFID cards
+#include "RfidDb.h" // Database tools for storing ids in EEPROM
 
-RfidDb db = RfidDb(4,8,4);
+// Using an arduino nano we have 1KB of EEPROM
+// We are using the first 4 bytes to store the timestamp when the current valid charge will end
+// Therefore we offset the database 4 bytes
+uint16_t eepromOffset = 4;
+
+// A database designed to store a number of RFIDs of 32 bits up to a fixed
+// size. The database is stored in EEPROM and requires (N * 4) + 2 bytes of 
+// storage where N is the maximum number of entries.
+
+uint8_t maxDbSize = 100;
+RfidDb db = RfidDb(maxDbSize, eepromOffset);
 
 uint32_t id1 = 0xFFFFFF01;
 
@@ -180,61 +190,12 @@ void loop () {
     // Wait a bit before trying again
     Serial.println("\n\nSend a character to scan another tag!");
     Serial.flush();
-   // while (!Serial.available());
+    while (!Serial.available());
     while (Serial.available()) {
     Serial.read();
     }
     Serial.flush();    
   }
-  else 
-    {
-      Serial.println("ahhhhhhhhhhhhh");
-    }
-    DateTime now = rtc.now();
-
-    Serial.print(now.year(), DEC);
-    Serial.print('/');
-    Serial.print(now.month(), DEC);
-    Serial.print('/');
-    Serial.print(now.day(), DEC);
-    Serial.print(" (");
-    Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);
-    Serial.print(") ");
-    Serial.print(now.hour(), DEC);
-    Serial.print(':');
-    Serial.print(now.minute(), DEC);
-    Serial.print(':');
-    Serial.print(now.second(), DEC);
-    Serial.println();
-
-    Serial.print(" since midnight 1/1/1970 = ");
-    Serial.print(now.unixtime());
-    Serial.print("s = ");
-    Serial.print(now.unixtime() / 86400L);
-    Serial.println("d");
-
-    // calculate a date which is 7 days and 30 seconds into the future
-    DateTime future (now + TimeSpan(7,12,30,6));
-
-    Serial.print(" now + 7d + 30s: ");
-    Serial.print(future.year(), DEC);
-    Serial.print('/');
-    Serial.print(future.month(), DEC);
-    Serial.print('/');
-    Serial.print(future.day(), DEC);
-    Serial.print(' ');
-    Serial.print(future.hour(), DEC);
-    Serial.print(':');
-    Serial.print(future.minute(), DEC);
-    Serial.print(':');
-    Serial.print(future.second(), DEC);
-    Serial.println();
-
-    Serial.print("Temperature: ");
-    Serial.print(rtc.getTemperature());
-    Serial.println(" C");
-
-    Serial.println();
-    
+  Serial.println();
   delay(3000);
 }
