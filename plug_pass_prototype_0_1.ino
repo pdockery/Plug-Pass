@@ -76,16 +76,73 @@ void setup () {
     if(GetChargeEndTime() > rtc.now().unixtime())
     {
       Serial.println("Charge End in future, Continuing charging");  
-      Serial.print("Current time ");
-      Serial.print(rtc.now().unixtime());
+      Serial.print("Current rtc time ");
+      Serial.print(rtc.now().year(), DEC);
+      Serial.print('/');
+      Serial.print(rtc.now().month(), DEC);
+      Serial.print('/');
+      Serial.print(rtc.now().day(), DEC);
+      Serial.print(" (");
+      Serial.print(daysOfTheWeek[rtc.now().dayOfTheWeek()]);
+      Serial.print(") ");
+      Serial.print(rtc.now().hour(), DEC);
+      Serial.print(':');
+      Serial.print(rtc.now().minute(), DEC);
+      Serial.print(':');
+      Serial.print(rtc.now().second(), DEC);
       Serial.println();
+
       Serial.print("Charge end time ");
-      Serial.print(GetChargeEndTime());
+      DateTime chargeEnding = GetChargeEndTime();
+      Serial.print(chargeEnding.year(), DEC);
+      Serial.print('/');
+      Serial.print(chargeEnding.month(), DEC);
+      Serial.print('/');
+      Serial.print(chargeEnding.day(), DEC);
+      Serial.print(" (");
+      Serial.print(daysOfTheWeek[chargeEnding.dayOfTheWeek()]);
+      Serial.print(") ");
+      Serial.print(chargeEnding.hour(), DEC);
+      Serial.print(':');
+      Serial.print(chargeEnding.minute(), DEC);
+      Serial.print(':');
+      Serial.print(chargeEnding.second(), DEC);
       Serial.println();
     }
     else
     {
       Serial.println("Last charge ended before restart");
+      Serial.print("Last charge end time ");
+      DateTime chargeEnding = GetChargeEndTime();
+      Serial.print(chargeEnding.year(), DEC);
+      Serial.print('/');
+      Serial.print(chargeEnding.month(), DEC);
+      Serial.print('/');
+      Serial.print(chargeEnding.day(), DEC);
+      Serial.print(" (");
+      Serial.print(daysOfTheWeek[chargeEnding.dayOfTheWeek()]);
+      Serial.print(") ");
+      Serial.print(chargeEnding.hour(), DEC);
+      Serial.print(':');
+      Serial.print(chargeEnding.minute(), DEC);
+      Serial.print(':');
+      Serial.print(chargeEnding.second(), DEC);
+      Serial.println();
+      Serial.println("Current rtc time ");
+      Serial.print(rtc.now().year(), DEC);
+      Serial.print('/');
+      Serial.print(rtc.now().month(), DEC);
+      Serial.print('/');
+      Serial.print(rtc.now().day(), DEC);
+      Serial.print(" (");
+      Serial.print(daysOfTheWeek[rtc.now().dayOfTheWeek()]);
+      Serial.print(") ");
+      Serial.print(rtc.now().hour(), DEC);
+      Serial.print(':');
+      Serial.print(rtc.now().minute(), DEC);
+      Serial.print(':');
+      Serial.print(rtc.now().second(), DEC);
+      Serial.println();
     }
   }
 }
@@ -123,11 +180,42 @@ void loop () {
     // Display some basic information about the card
     Serial.println("Found an ISO14443A card");
     Serial.println("We'll update the charge time despite not yet validating the card");
-    SetChargeEndTime();
 
+      Serial.print("Current rtc time ");
+      Serial.print(rtc.now().year(), DEC);
+      Serial.print('/');
+      Serial.print(rtc.now().month(), DEC);
+      Serial.print('/');
+      Serial.print(rtc.now().day(), DEC);
+      Serial.print(" (");
+      Serial.print(daysOfTheWeek[rtc.now().dayOfTheWeek()]);
+      Serial.print(") ");
+      Serial.print(rtc.now().hour(), DEC);
+      Serial.print(':');
+      Serial.print(rtc.now().minute(), DEC);
+      Serial.print(':');
+      Serial.print(rtc.now().second(), DEC);
+      Serial.println();
+      
+    DateTime chargeEnding = GetChargeEndTime();
+   
+    SetChargeEndTime();
     Serial.print("Current charge end time is ");
-    Serial.print(GetChargeEndTime());
-    Serial.println();
+      Serial.print(chargeEnding.year(), DEC);
+      Serial.print('/');
+      Serial.print(chargeEnding.month(), DEC);
+      Serial.print('/');
+      Serial.print(chargeEnding.day(), DEC);
+      Serial.print(" (");
+      Serial.print(daysOfTheWeek[chargeEnding.dayOfTheWeek()]);
+      Serial.print(") ");
+      Serial.print(chargeEnding.hour(), DEC);
+      Serial.print(':');
+      Serial.print(chargeEnding.minute(), DEC);
+      Serial.print(':');
+      Serial.print(chargeEnding.second(), DEC);
+      Serial.println();
+
     Serial.print("  UID Length: ");Serial.print(uidLength, DEC);Serial.println(" bytes");
     Serial.print("  UID Value: ");
     nfc.PrintHex(uid, uidLength);
@@ -200,8 +288,9 @@ void loop () {
     {
       Serial.println("ahhhhhhhhhhhhh");
     }
-    DateTime now = rtc.now();
-
+    
+    DateTime now = rtc.now(); 
+    Serial.print("Current rtc time ");
     Serial.print(now.year(), DEC);
     Serial.print('/');
     Serial.print(now.month(), DEC);
@@ -216,33 +305,6 @@ void loop () {
     Serial.print(':');
     Serial.print(now.second(), DEC);
     Serial.println();
-
-    Serial.print(" since midnight 1/1/1970 = ");
-    Serial.print(now.unixtime());
-    Serial.print("s = ");
-    Serial.print(now.unixtime() / 86400L);
-    Serial.println("d");
-
-    // calculate a date which is 7 days and 30 seconds into the future
-    DateTime future (now + TimeSpan(7,12,30,6));
-
-    Serial.print(" now + 7d + 30s: ");
-    Serial.print(future.year(), DEC);
-    Serial.print('/');
-    Serial.print(future.month(), DEC);
-    Serial.print('/');
-    Serial.print(future.day(), DEC);
-    Serial.print(' ');
-    Serial.print(future.hour(), DEC);
-    Serial.print(':');
-    Serial.print(future.minute(), DEC);
-    Serial.print(':');
-    Serial.print(future.second(), DEC);
-    Serial.println();
-
-    Serial.print("Temperature: ");
-    Serial.print(rtc.getTemperature());
-    Serial.println(" C");
 
     Serial.println();
     
