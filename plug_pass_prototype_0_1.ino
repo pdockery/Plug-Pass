@@ -1,12 +1,22 @@
 // Date and time functions using a DS3231 RTC connected via I2C and Wire lib
-#include "RTClib.h"
-#include <EEPROM.h>
-#include <Wire.h>
-#include <SPI.h>
-#include <Adafruit_PN532.h>
-#include "RfidDb.h"
+#include "RTClib.h" // For use with DS3231 to keep time when disconnected 
+#include <EEPROM.h> // For persistent storage of data when disconnected (future charge expiration time, verified key ids, etc.)
+#include <Wire.h> // Used in serial communication
+#include <SPI.h> // Used in serial communication
+#include <Adafruit_PN532.h> // For use with a PN532 to interact with RFID cards
+#include "RfidDb.h" // Database tools for storing ids in EEPROM
 
-RfidDb db = RfidDb(4,8,4);
+// Using an arduino nano we have 1KB of EEPROM
+// We are using the first 4 bytes to store the timestamp when the current valid charge will end
+// Therefore we offset the database 4 bytes
+uint16_t eepromOffset = 4;
+
+// A database designed to store a number of RFIDs of 32 bits up to a fixed
+// size. The database is stored in EEPROM and requires (N * 4) + 2 bytes of 
+// storage where N is the maximum number of entries.
+
+uint8_t maxDbSize = 100;
+RfidDb db = RfidDb(maxDbSize, eepromOffset);
 
 uint32_t id1 = 0xFFFFFF01;
 
@@ -23,12 +33,17 @@ RTC_DS3231 rtc;
 
 char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
+int relayPin = 12;
+
+uint32_t chargeEnd;
+
 void setup () {
 /*
 #ifndef ESP8266
   while (!Serial); // for Leonardo/Micro/Zero
 #endif
 */
+  pinMode(relayPin, OUTPUT);
   Serial.begin(9600);
 
   #if defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_ESP32)
@@ -41,7 +56,16 @@ void setup () {
     Serial.println("Couldn't find RTC");
     while (1);
   }
+  GetChargeEndTime();
 
+  if(chargeEnd > rtc.now().unixtime())
+  {
+    digitalWrite(relayPin, HIGH);
+    delay(3000);
+    digitalWrite(relayPin,LOW);
+  }
+
+  
   nfc.begin();
 
   uint32_t versiondata = nfc.getFirmwareVersion();
@@ -53,39 +77,41 @@ void setup () {
   // configure board to read RFID tags
   nfc.SAMConfig();
 
-  if (rtc.lostPower()) {
+  if (rtc.lostPower())
+  {
     Serial.println("RTC lost power, lets set the time!");
     // following line sets the RTC to the date & time this sketch was compiled
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-    // This line sets the RTC with an explicit date & time, for example to set
-    // January 21, 2014 at 3am you would call:
-    // rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
   }
-  else // More Eli code if the rtc is a reliable provider of datetime
+  else // rtc is a reliable provider of datetime
   {
-    if(GetChargeEndTime() > rtc.now().unixtime())
+    if(chargeEnd > rtc.now().unixtime())
     {
       Serial.println("Charge End in future, Continuing charging");  
-      Serial.print("Current time ");
-      Serial.print(rtc.now().unixtime());
-      Serial.println();
+      Serial.print("Current rtc time ");
+      PrintDateTime(rtc.now());
+      
       Serial.print("Charge end time ");
-      Serial.print(GetChargeEndTime());
-      Serial.println();
+      PrintDateTime(chargeEnd);
+      
     }
     else
     {
       Serial.println("Last charge ended before restart");
+      Serial.print("Last charge end time ");
+      PrintDateTime(chargeEnd);
+     
+      Serial.println("Current rtc time ");
+      PrintDateTime(rtc.now());
     }
   }
 }
 
 int chargeEndAddress = 0;
-uint32_t chargeEnd;
 
 uint32_t GetChargeEndTime()
 {
-  return EEPROM.get(chargeEndAddress, chargeEnd);
+  EEPROM.get(chargeEndAddress, chargeEnd);
 }
 
 // Adds 8 hours to current time and sets it in eeprom to address 0 length of 32 bits
@@ -100,6 +126,11 @@ void SetChargeEndTime()
 
 void loop () {
 
+  if(chargeEnd < rtc.now().unixtime())
+  {
+    digitalWrite(relayPin, LOW);
+  }
+
   Serial.println("Please scan a card");
    uint8_t success;
   uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };  // Buffer to store the returned UID
@@ -112,12 +143,17 @@ void loop () {
   if (success) {
     // Display some basic information about the card
     Serial.println("Found an ISO14443A card");
-    Serial.println("We'll update the charge time despite not yet validating the card");
+    Serial.println("We'll update the charge time despite not yet validating the card for now...");
+    
+    Serial.print("Current rtc time ");
+    PrintDateTime(rtc.now());
+   
     SetChargeEndTime();
-
     Serial.print("Current charge end time is ");
-    Serial.print(GetChargeEndTime());
-    Serial.println();
+    PrintDateTime(chargeEnd);
+
+    digitalWrite(relayPin, HIGH);
+
     Serial.print("  UID Length: ");Serial.print(uidLength, DEC);Serial.println(" bytes");
     Serial.print("  UID Value: ");
     nfc.PrintHex(uid, uidLength);
@@ -180,12 +216,38 @@ void loop () {
     // Wait a bit before trying again
     Serial.println("\n\nSend a character to scan another tag!");
     Serial.flush();
-    while (!Serial.available());
+   // while (!Serial.available());
     while (Serial.available()) {
     Serial.read();
     }
     Serial.flush();    
   }
+  else 
+  {
+      Serial.println("nfc.readPassiveTargetID Failed");
+  }
+    
+  PrintDateTime(rtc.now());
+    
   Serial.println();
+    
   delay(3000);
+}
+
+void PrintDateTime(DateTime time)
+{
+  Serial.print(time.year(), DEC);
+      Serial.print('/');
+      Serial.print(time.month(), DEC);
+      Serial.print('/');
+      Serial.print(time.day(), DEC);
+      Serial.print(" (");
+      Serial.print(daysOfTheWeek[time.dayOfTheWeek()]);
+      Serial.print(") ");
+      Serial.print(time.hour(), DEC);
+      Serial.print(':');
+      Serial.print(time.minute(), DEC);
+      Serial.print(':');
+      Serial.print(time.second(), DEC);
+      Serial.println();
 }
