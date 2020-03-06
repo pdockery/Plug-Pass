@@ -89,20 +89,25 @@ void setup () {
     {
       Serial.println("Charge End in future, Continuing charging");  
       Serial.print("Current rtc time ");
+      
       PrintDateTime(rtc.now());
       
       Serial.print("Charge end time ");
       PrintDateTime(chargeEnd);
       
+
     }
     else
     {
       Serial.println("Last charge ended before restart");
       Serial.print("Last charge end time ");
+
       PrintDateTime(chargeEnd);
      
       Serial.println("Current rtc time ");
       PrintDateTime(rtc.now());
+
+
     }
   }
 }
@@ -143,6 +148,7 @@ void loop () {
   if (success) {
     // Display some basic information about the card
     Serial.println("Found an ISO14443A card");
+
     Serial.println("We'll update the charge time despite not yet validating the card for now...");
     
     Serial.print("Current rtc time ");
@@ -223,6 +229,7 @@ void loop () {
     Serial.flush();    
   }
   else 
+
   {
       Serial.println("nfc.readPassiveTargetID Failed");
   }
@@ -230,6 +237,7 @@ void loop () {
   PrintDateTime(rtc.now());
     
   Serial.println();
+
     
   delay(3000);
 }
