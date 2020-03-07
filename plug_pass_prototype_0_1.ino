@@ -61,8 +61,10 @@ void setup () {
   if(chargeEnd > rtc.now().unixtime())
   {
     digitalWrite(relayPin, HIGH);
-    delay(3000);
-    digitalWrite(relayPin,LOW);
+  }
+  else
+  {
+    digitalWrite(relayPin, LOW);
   }
 
   
@@ -123,7 +125,7 @@ uint32_t GetChargeEndTime()
 void SetChargeEndTime()
 {
   DateTime now = rtc.now();
-  chargeEnd = now.unixtime() + 28800; // current time + 8 hours
+  chargeEnd = now.unixtime() + 30; // current time + 8 hours
   EEPROM.put(chargeEndAddress, chargeEnd); 
 }
 
@@ -134,6 +136,20 @@ void loop () {
   if(chargeEnd < rtc.now().unixtime())
   {
     digitalWrite(relayPin, LOW);
+    Serial.println("charging expired, relay opened");
+    Serial.println("current time ");
+    PrintDateTime(rtc.now());
+    Serial.println("charge time ends ");
+    PrintDateTime(chargeEnd);
+  }
+  else // I'm not positive this else loop is necessary
+  {
+    digitalWrite(relayPin, HIGH);
+    Serial.println("charging active, relay closed");
+    Serial.println("current time ");
+    PrintDateTime(rtc.now());
+    Serial.println("charge time ends ");
+    PrintDateTime(chargeEnd);
   }
 
   Serial.println("Please scan a card");
@@ -143,7 +159,8 @@ void loop () {
     
   // Wait for an NTAG203 card.  When one is found 'uid' will be populated with
   // the UID, and uidLength will indicate the size of the UUID (normally 7)
-  success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength);
+  // added a timeout to the card reading function.  it'll wait 5 seconds for a card, then move on.
+  success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength,5000);
   
   if (success) {
     // Display some basic information about the card
@@ -239,7 +256,7 @@ void loop () {
   Serial.println();
 
     
-  delay(3000);
+  //delay(3000);  we don't need the delay since we're waiting for the card earlier in the loop
 }
 
 void PrintDateTime(DateTime time)
