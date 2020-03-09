@@ -79,7 +79,7 @@ void setup () {
   // configure board to read RFID tags
   nfc.SAMConfig();
 
-  if (rtc.lostPower())
+  if (rtc.lostPower()&&Serial.available())
   {
     Serial.println("RTC lost power, lets set the time!");
     // following line sets the RTC to the date & time this sketch was compiled
@@ -137,15 +137,6 @@ void loop () {
   {
     digitalWrite(relayPin, LOW);
     Serial.println("charging expired, relay opened");
-    Serial.println("current time ");
-    PrintDateTime(rtc.now());
-    Serial.println("charge time ends ");
-    PrintDateTime(chargeEnd);
-  }
-  else // I'm not positive this else loop is necessary
-  {
-    digitalWrite(relayPin, HIGH);
-    Serial.println("charging active, relay closed");
     Serial.println("current time ");
     PrintDateTime(rtc.now());
     Serial.println("charge time ends ");
