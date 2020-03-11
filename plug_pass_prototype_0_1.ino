@@ -148,6 +148,7 @@ void loop ()
     else
     {
       Serial.println("The card is invalid, no action taken");
+      delay(1000);                      // adding a delay to prevent inadvertent rescans
     }
     Serial.println("");
     Serial.flush();
