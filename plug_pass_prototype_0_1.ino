@@ -19,8 +19,9 @@ uint32_t chargeStart;                     // defines a variable to store the cha
 uint8_t success;                          // defines a variable to check the success of an NFC card scan
 uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };  // Buffer to store the returned UID after NFC card scan
 uint8_t uidLength;                        // Length of the UID (4 or 7 bytes depending on ISO14443A card type) for NFC card scan
-int reader_timeout = 5000;                // defines a variable to timeout the card reader function, in ms
-int charge_time = 30;                     // defines the amount of time, in seconds, a standard charging time will be
+uint16_t timeout = 5000;                  // defines a variable to timeout the card reader function, in ms
+unsigned long charge_time = 30;           // defines the amount of time, in seconds, a standard charging time will be
+String cardCode;                          // defines a string variable to check against known card codes
 
 /*-------------------------( Declare objects )--------------------------*/
 Adafruit_PN532 nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS); // Create a nfc object for a breakout with a software SPI connection
@@ -33,6 +34,7 @@ void setup ()
   Serial.begin(9600);           //Set baud rate for serial communications
   delay(3000);                  // wait for console opening
   pinMode(relayPin, OUTPUT);    // establishing the relayPin as an OUTPUT
+  pinMode(LED_BUILTIN, OUTPUT); // establishes built in LED pin as an output
   
   if (! rtc.begin())
   {
@@ -57,6 +59,7 @@ void setup ()
     Serial.print("Charge end time ");
     PrintDateTime(chargeStart);
     digitalWrite(relayPin, HIGH);  //if the chargeStart time stored in the Arduino's EEPROM is in the future, close the relay
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on
   }
   else
   {
@@ -65,7 +68,8 @@ void setup ()
     PrintDateTime(chargeStart);
     Serial.println("Current rtc time ");
     PrintDateTime(rtc.now());
-    digitalWrite(relayPin, LOW);  //if the chargeStart time stored in the Arduino's EEPROM is in the past, open the relay
+    digitalWrite(relayPin, LOW);              //if the chargeStart time stored in the Arduino's EEPROM is in the past, open the relay
+    digitalWrite(LED_BUILTIN, LOW);           // turn the LED off
   }
 
   nfc.begin();
@@ -73,9 +77,10 @@ void setup ()
   if (! versiondata)
   {
     Serial.print("Didn't find PN53x board");
-    while (1);                    // I think we're going to eventually do something different, I don't want the outlet to fail if the NFC reader fails
+    while (1);                              // I think we're going to eventually do something different, I don't want the outlet to fail if the NFC reader fails
   }
-  nfc.SAMConfig();                // configure board to read RFID tags
+//  nfc.setPassiveActivationRetries(0xFF);  // Sets the maximum number of retries.  0xFF retries forever.  Currently using a timeout function in success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, timeout);
+  nfc.SAMConfig();                          // configure board to read RFID tags
 }
 
 /*---------------------------( Main Loop )-----------------------------*/
@@ -84,57 +89,72 @@ void loop ()
   if ((chargeStart + charge_time) < rtc.now().unixtime())
   {
     digitalWrite(relayPin, LOW);
+    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off
   }
 
-  if (digitalRead(relayPin) == LOW)
-  {
-    Serial.println("charging expired, relay opened");
-    Serial.println("Please scan a card to start charging");
-  }
-  else
-  {
-    Serial.println("current time ");
-    PrintDateTime(rtc.now());
-    Serial.println("charge time ends ");
-    PrintDateTime(chargeStart + charge_time);
-    Serial.println("Scan a card to stop charging");
-  }
+//  if (digitalRead(relayPin) == LOW)
+//  {
+//    Serial.println("charging expired, relay opened");
+//    Serial.println("Please scan a card to start charging");
+//  }
+//  else
+//  {
+//    Serial.println("current time ");
+//    PrintDateTime(rtc.now());
+//    Serial.println("charge time ends ");
+//    PrintDateTime(chargeStart + charge_time);
+//    Serial.println("Scan a card to stop charging");
+//  }
 
   // When an NTAG203 card is found 'uid' will be populated with
   // the UID, and uidLength will indicate the size of the UUID (normally 7)
   // added a timeout to the card reading function.  it'll wait 5 seconds for a card, then move on.
-  success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, reader_timeout);
+  success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, timeout);
   
   if (success) 
-  {   
-    if (digitalRead(relayPin) == LOW)  // if the outlet is off
+  { 
+    // Display some basic information about the card
+    Serial.print("  UID Length: "); 
+    Serial.print(uidLength, DEC); 
+    Serial.println(" bytes");
+    Serial.print("  UID Value: ");
+    nfc.PrintHex(uid, uidLength);
+      
+    returnCardCode(cardCode);
+    if(cardCode == "04 E0 46 4A DD 64 80")
     {
-      // Close the relay
-      digitalWrite(relayPin, HIGH);
-      // Display some basic information about the card
-      Serial.println("We'll update the charge time despite not yet validating the card for now...");
-      Serial.print("Current rtc time ");
-      PrintDateTime(rtc.now());
-      SetChargeStartTime();
-      Serial.print("Current charge end time is ");
-      PrintDateTime(chargeStart + charge_time);
-      delay(3000);                    // adding a delay to prevent inadvertent rescans
+      Serial.println("Card validated");  
+      if (digitalRead(relayPin) == LOW)   // if the outlet is off
+      { 
+        digitalWrite(relayPin, HIGH);     // Close the relay
+        digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on
+        // Display some basic information about the card
+        Serial.println("Initiating charging");
+        Serial.print("Current rtc time ");
+        PrintDateTime(rtc.now());
+        SetChargeStartTime();
+        Serial.print("Current charge end time is ");
+        PrintDateTime(chargeStart + charge_time);
+        delay(1000);                      // adding a delay to prevent inadvertent rescans
+      }
+      else
+      {
+        // Open the relay
+        Serial.println("Using the NFC card to open the relay");      
+        digitalWrite(relayPin, LOW);
+        digitalWrite(LED_BUILTIN, LOW); // turn the LED off
+        delay(1000);                    // adding a delay to prevent inadvertent rescans
+      }
     }
     else
     {
-      // Open the relay
-      Serial.println("Using the NFC card to open the relay");      
-      digitalWrite(relayPin, LOW);
-      delay(3000);                    // adding a delay to prevent inadvertent rescans
+      Serial.println("The card is invalid, no action taken");
+      delay(1000);                      // adding a delay to prevent inadvertent rescans
     }
-    // Display some basic information about the card
-    Serial.print("  UID Length: "); Serial.print(uidLength, DEC); Serial.println(" bytes");
-    Serial.print("  UID Value: ");
-    nfc.PrintHex(uid, uidLength);
-    Serial.println("");
-    Serial.flush();
+//    Serial.println();
+//    Serial.flush();
   }
-  Serial.println();
+//  Serial.println();
 }
 
 /*---------------( Functions defined in the Sketch for the Sketch )------------*/
@@ -168,4 +188,16 @@ void PrintDateTime(DateTime time)
   Serial.print(':');
   Serial.print(time.second(), DEC);
   Serial.println();
+}
+
+void returnCardCode(String &dest)
+{
+    String cardRead;
+    for(byte i=0; i < uidLength; i++)
+    {
+      cardRead.concat(String(uid[i] < 0x10 ? " 0" : " "));
+      cardRead.concat(String(uid[i], HEX));
+    }
+    cardRead.toUpperCase();
+    dest = cardRead.substring(1);
 }
