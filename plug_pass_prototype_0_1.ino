@@ -20,7 +20,7 @@ uint8_t success;                          // defines a variable to check the suc
 uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };  // Buffer to store the returned UID after NFC card scan
 uint8_t uidLength;                        // Length of the UID (4 or 7 bytes depending on ISO14443A card type) for NFC card scan
 uint16_t timeout = 5000;                  // defines a variable to timeout the card reader function, in ms
-unsigned long charge_time = 30;           // defines the amount of time, in seconds, a standard charging time will be
+uint32_t charge_time = 30;           // defines the amount of time, in seconds, a standard charging time will be
 String cardCode;                          // defines a string variable to check against known card codes
 
 /*-------------------------( Declare objects )--------------------------*/
