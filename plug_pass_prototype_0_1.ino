@@ -16,11 +16,12 @@ char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursd
 int relayPin = 12;                        // defines a variable to set the output pin to D12
 int chargeStartAddress = 0;               // defines a variable to set the address location for the charge Start time in the EEPROM
 uint32_t chargeStart;                     // defines a variable to store the charge Start time
+uint8_t chargeStatus = 0;                 // defining a dummy variable to hold the most recent command to turn off or on the outlet
 uint8_t success;                          // defines a variable to check the success of an NFC card scan
 uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };  // Buffer to store the returned UID after NFC card scan
 uint8_t uidLength;                        // Length of the UID (4 or 7 bytes depending on ISO14443A card type) for NFC card scan
 uint16_t timeout = 5000;                  // defines a variable to timeout the card reader function, in ms
-uint32_t charge_time = 30;           // defines the amount of time, in seconds, a standard charging time will be
+uint32_t chargeTime = 30;                 // defines the amount of time, in seconds, a standard charging time will be
 String cardCode;                          // defines a string variable to check against known card codes
 
 /*-------------------------( Declare objects )--------------------------*/
@@ -31,7 +32,7 @@ RTC_DS3231 rtc; // Create a RealTimeClock object
 void setup ()
 {
 
-  Serial.begin(9600);           //Set baud rate for serial communications
+  Serial.begin(9600);           // Set baud rate for serial communications
   delay(3000);                  // wait for console opening
   pinMode(relayPin, OUTPUT);    // establishing the relayPin as an OUTPUT
   pinMode(LED_BUILTIN, OUTPUT); // establishes built in LED pin as an output
@@ -51,15 +52,16 @@ void setup ()
     PrintDateTime(rtc.now());
   }
 
-  if ((chargeStart + charge_time) > rtc.now().unixtime())
+  if ((chargeStart + chargeTime) > rtc.now().unixtime())
   {
     Serial.println("Charge End in future, Continuing charging");
     Serial.print("Current rtc time ");
     PrintDateTime(rtc.now());
     Serial.print("Charge end time ");
     PrintDateTime(chargeStart);
-    digitalWrite(relayPin, HIGH);  //if the chargeStart time stored in the Arduino's EEPROM is in the future, close the relay
-    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on
+    digitalWrite(relayPin, HIGH);       //if the chargeStart time stored in the Arduino's EEPROM is in the future, close the relay
+    chargeStatus = 1;                   // set dummy variable to 1 as "on"
+    digitalWrite(LED_BUILTIN, HIGH);    // turn the LED on
   }
   else
   {
@@ -68,8 +70,9 @@ void setup ()
     PrintDateTime(chargeStart);
     Serial.println("Current rtc time ");
     PrintDateTime(rtc.now());
-    digitalWrite(relayPin, LOW);              //if the chargeStart time stored in the Arduino's EEPROM is in the past, open the relay
-    digitalWrite(LED_BUILTIN, LOW);           // turn the LED off
+    digitalWrite(relayPin, LOW);        //if the chargeStart time stored in the Arduino's EEPROM is in the past, open the relay
+    chargeStatus = 0;                   // set dummy variable to 1 as "off"
+    digitalWrite(LED_BUILTIN, LOW);     // turn the LED off
   }
 
   nfc.begin();
@@ -86,10 +89,11 @@ void setup ()
 /*---------------------------( Main Loop )-----------------------------*/
 void loop ()
 {
-  if ((chargeStart + charge_time) < rtc.now().unixtime())
+  if ((chargeStart + chargeTime) < rtc.now().unixtime())
   {
     digitalWrite(relayPin, LOW);
-    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off
+    chargeStatus = 0;                   // set dummy variable to 1 as "off"
+    digitalWrite(LED_BUILTIN, LOW);     // turn the LED off
   }
 
 //  if (digitalRead(relayPin) == LOW)
@@ -102,7 +106,7 @@ void loop ()
 //    Serial.println("current time ");
 //    PrintDateTime(rtc.now());
 //    Serial.println("charge time ends ");
-//    PrintDateTime(chargeStart + charge_time);
+//    PrintDateTime(chargeStart + chargeTime);
 //    Serial.println("Scan a card to stop charging");
 //  }
 
@@ -124,9 +128,10 @@ void loop ()
     if(cardCode == "04 E0 46 4A DD 64 80")
     {
       Serial.println("Card validated");  
-      if (digitalRead(relayPin) == LOW)   // if the outlet is off
+      if (chargeStatus == 0)              // if the outlet is off
       { 
         digitalWrite(relayPin, HIGH);     // Close the relay
+        chargeStatus = 1;                 // set dummy variable to 1 as "on"
         digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on
         // Display some basic information about the card
         Serial.println("Initiating charging");
@@ -134,7 +139,7 @@ void loop ()
         PrintDateTime(rtc.now());
         SetChargeStartTime();
         Serial.print("Current charge end time is ");
-        PrintDateTime(chargeStart + charge_time);
+        PrintDateTime(chargeStart + chargeTime);
         delay(1000);                      // adding a delay to prevent inadvertent rescans
       }
       else
@@ -142,6 +147,7 @@ void loop ()
         // Open the relay
         Serial.println("Using the NFC card to open the relay");      
         digitalWrite(relayPin, LOW);
+        chargeStatus = 0;               // set dummy variable to 1 as "off"
         digitalWrite(LED_BUILTIN, LOW); // turn the LED off
         delay(1000);                    // adding a delay to prevent inadvertent rescans
       }
