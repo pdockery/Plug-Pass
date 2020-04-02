@@ -16,3 +16,6 @@ Under development in this repository are open-source projects to be deployed and
 * Software for arduino nano based plug-pass outlet control platform
 * Control board design and configuration 
 * Component list for Plug-Pass outlet
+
+<b>For more information about Clatskanie PUD's EV charging program visit:<b>
+https://clatskaniepud.com/ev
