@@ -8,9 +8,9 @@ This program is designed to be open-source in the hope that by sharing the progr
 
 Included in this repository is open-source information that has been used in our pilot program:
 * Form of Electric Vehicle Public Charging Rate Design<br>
-* Worksheet for calculating public charging rates<br>
-* Form of Plug-Pass subscription agreement<br>
-* Summary of Clatskanie PUD's Electric Vehicle Public Charging Program Design
+* Worksheet for calculating public charging rates (pending)<br>
+* Form of Plug-Pass subscription agreement (pending)<br>
+* Summary of Clatskanie PUD's Electric Vehicle Public Charging Program Design (pending)
 
 Under development in this repository are open-source projects to be deployed and tested
 * Software for arduino nano based plug-pass outlet control platform
