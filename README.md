@@ -14,4 +14,5 @@ Included in this repository is open-source information that has been used in our
 
 Under development in this repository are open-source projects to be deployed and tested
 * Software for arduino nano based plug-pass outlet control platform
-* 
+* Control board design and configuration 
+* Component list for Plug-Pass outlet
