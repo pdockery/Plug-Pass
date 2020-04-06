@@ -1,6 +1,6 @@
 # Plug-Pass
 
-Clatskanie People's Utility District (PUD) is a public, not-for-profic electric utility, governed by a locally-elected Board of Directors serving the Oregon communities and surrounding areas of Rainier, Westport, and Clatskanie.  The vast majority of our customers commute for work, and Clatskanie PUD designed its electric vehicle to minimize cost and maximize value for its commuting customers.  
+Clatskanie People's Utility District (PUD) is a public, not-for-profit electric utility, governed by a locally-elected Board of Directors serving the Oregon communities and surrounding areas of Rainier, Westport, and Clatskanie.  The vast majority of our customers commute for work, and Clatskanie PUD designed its electric vehicle to minimize cost and maximize value for its commuting customers.  
 
 Plug-Pass is a subscription-based, electric-vehicle public charging program developed to provide commuters easy access to low-cost charging service at their workplaces.  The first deployment of the Plug-Pass program was at a location where access to the parking spots was easily monitored, and the initial offering only used timers to control electricity.  In considering ways to expand the program to locations that aren't easily monitored, staff is developing low-cost control mechanisms to enable subscribers to initiate charging while preventing unauthorized parties from easily accessing the service.
 
