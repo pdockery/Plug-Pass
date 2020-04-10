@@ -1,0 +1,133 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP Conn_01x06
+D Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)
+K connector
+F ~
+$ENDCMP
+#
+$CMP Conn_01x06_Female
+D Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)
+K connector
+F ~
+$ENDCMP
+#
+$CMP Conn_01x06_MountingPin_PassThrough
+D Generic connectable mounting pin connector, single row, 01x06, Female to Male Pass Through
+K connector
+F ~
+$ENDCMP
+#
+$CMP Conn_01x08
+D Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)
+K connector
+F ~
+$ENDCMP
+#
+$CMP Conn_01x08_Female
+D Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)
+K connector
+F ~
+$ENDCMP
+#
+$CMP Conn_01x08_MountingPin_PassThrough
+D Generic connectable mounting pin connector, single row, 01x08, Female to Male PassThrough
+K connector
+F ~
+$ENDCMP
+#
+$CMP Conn_01x15_Female
+D Generic connector, single row, 01x15, script generated (kicad-library-utils/schlib/autogen/connector/)
+K connector
+F ~
+$ENDCMP
+#
+$CMP Conn_01x15_MountingPin
+D Generic connectable mounting pin connector, single row, 01x15, script generated (kicad-library-utils/schlib/autogen/connector/)
+K connector
+F ~
+$ENDCMP
+#
+$CMP Conn_WallPlug_Earth
+D 3-pin general wall plug, with Earth wire (110VAC, 220VAC)
+K wall plug 110VAC 220VAC
+F ~
+$ENDCMP
+#
+$CMP Conn_WallSocket_Earth
+D 3-pin german wall socket, with Earth wire (110VAC, 220VAC)
+K wall socket 110VAC 220VAC
+F ~
+$ENDCMP
+#
+$CMP DS3231M
+D Extremely Accurate I2C-Integrated RTC/TCXO/Crystal SOIC-16
+K RTC TCXO Realtime Time Clock Crystal Oscillator I2C
+F http://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+$ENDCMP
+#
+$CMP G5LE-14_DC5
+D RELAY GEN PURPOSE SPDT 10A 5V
+K Z1011-ND G5LE
+F https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5le.pdf
+$ENDCMP
+#
+$CMP GNDREF
+D Power symbol creates a global label with name "GNDREF" , reference supply ground
+K power-flag
+$ENDCMP
+#
+$CMP IRM-10-12
+D 12V, 10W, AC-DC module power supply, MeanWell
+K 12V 10W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-10-15
+D 15V, 10W, AC-DC module power supply, MeanWell
+K 15V 10W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-10-24
+D 24V, 10W, AC-DC module power supply, MeanWell
+K 24V 10W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-10-3.3
+D 3.3V, 8W, AC-DC module power supply, MeanWell
+K 3.3V 8W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-10-5
+D 5V, 10W, AC-DC module power supply, MeanWell
+K 5V 10W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF
+$ENDCMP
+#
+$CMP NRF24L01_Breakout
+D Ultra low power 2.4GHz RF Transceiver, Carrier PCB
+K Low Power RF Transciever breakout carrier
+F http://www.nordicsemi.com/eng/content/download/2730/34105/file/nRF24L01_Product_Specification_v2_0.pdf
+$ENDCMP
+#
+$CMP OSTTC030162
+D TERM BLK 3POS SIDE ENTRY 5MM PCB
+K ED2601-ND OSTTC
+F http://www.on-shore.com/wp-content/uploads/OSTTCXX0162.pdf
+$ENDCMP
+#
+$CMP RF_PN532_Breakout
+D Ultra low power 2.4GHz RF Transceiver, Carrier PCB
+K Low Power RF Transciever breakout carrier
+F http://www.nordicsemi.com/eng/content/download/2730/34105/file/nRF24L01_Product_Specification_v2_0.pdf
+$ENDCMP
+#
+$CMP VCC
+D Power symbol creates a global label with name "VCC"
+K power-flag
+$ENDCMP
+#
+#End Doc Library
