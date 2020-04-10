@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name Plug_Pass)(type Legacy)(uri ${KIPRJMOD}/Plug_Pass.lib)(options "")(descr ""))
-)
