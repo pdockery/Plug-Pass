@@ -564,30 +564,6 @@ F 3 "" H 8700 3100 50  0001 C CNN
 $EndComp
 Text Label 9000 2700 2    50   ~ 0
 GND
-Wire Wire Line
-	8000 1850 8250 1850
-Wire Wire Line
-	8250 1850 8250 2200
-Wire Wire Line
-	8250 2200 9000 2200
-Wire Wire Line
-	8000 1950 8350 1950
-Wire Wire Line
-	8350 1950 8350 2400
-Wire Wire Line
-	8350 2400 9000 2400
-Wire Wire Line
-	8000 2050 8450 2050
-Wire Wire Line
-	8450 2050 8450 2500
-Wire Wire Line
-	8450 2500 9000 2500
-Wire Wire Line
-	8000 2150 8550 2150
-Wire Wire Line
-	8550 2150 8550 2300
-Wire Wire Line
-	8550 2300 9000 2300
 Text Label 9000 2500 2    50   ~ 0
 SS
 Text Label 9000 2400 2    50   ~ 0
@@ -838,7 +814,7 @@ Wire Wire Line
 Wire Wire Line
 	4950 7400 4950 6800
 Wire Wire Line
-	4950 6800 5600 6800
+	4950 6800 5500 6800
 Text Label 1650 5850 0    50   ~ 0
 D12
 Text Label 5800 4400 2    50   ~ 0
@@ -970,4 +946,42 @@ NoConn ~ 8000 1650
 NoConn ~ 8000 1550
 NoConn ~ 8000 1450
 NoConn ~ 4150 5000
+$Comp
+L power:LINE #PWR?
+U 1 1 5E94FB8A
+P 5500 6800
+F 0 "#PWR?" H 5500 6650 50  0001 C CNN
+F 1 "LINE" H 5350 6850 50  0000 C CNN
+F 2 "" H 5500 6800 50  0001 C CNN
+F 3 "" H 5500 6800 50  0001 C CNN
+	1    5500 6800
+	1    0    0    -1  
+$EndComp
+Connection ~ 5500 6800
+Wire Wire Line
+	5500 6800 5600 6800
+Wire Wire Line
+	8600 1850 8600 2200
+Wire Wire Line
+	8600 2200 9000 2200
+Wire Wire Line
+	8000 1850 8600 1850
+Wire Wire Line
+	8000 1950 8500 1950
+Wire Wire Line
+	8500 1950 8500 2300
+Wire Wire Line
+	8500 2300 9000 2300
+Wire Wire Line
+	8000 2050 8400 2050
+Wire Wire Line
+	8400 2050 8400 2400
+Wire Wire Line
+	8400 2400 9000 2400
+Wire Wire Line
+	8000 2150 8300 2150
+Wire Wire Line
+	8300 2150 8300 2500
+Wire Wire Line
+	8300 2500 9000 2500
 $EndSCHEMATC
