@@ -9,9 +9,10 @@
 /*---------------( Declare Constants and Pin Numbers )-----------------*/
 // If using the breakout with SPI, define the pins for SPI communication.
 #define PN532_SCK  (2)
-#define PN532_MOSI (3)
-#define PN532_SS   (4)
-#define PN532_MISO (5)
+#define PN532_MISO (3)
+#define PN532_MOSI (4)
+#define PN532_SS   (5)
+
 char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 int relayPin = 12;                        // defines a variable to set the output pin to D12
 int chargeStartAddress = 0;               // defines a variable to set the address location for the charge Start time in the EEPROM

@@ -1,6 +1,52 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
+# Arduino_Nano_v2.x
+#
+DEF Arduino_Nano_v2.x A 0 20 Y Y 1 F N
+F0 "A" -400 925 50 H V L BNN
+F1 "Arduino_Nano_v2.x" 200 -950 50 H V L TNN
+F2 "Module:Arduino_Nano" 0 0 50 H I C CIN
+F3 "" 0 0 50 H I C CNN
+ALIAS Arduino_Nano_v3.x
+$FPLIST
+ Arduino*Nano*
+$ENDFPLIST
+DRAW
+S -400 900 400 -900 0 1 10 f
+X D1/TX 1 -500 500 100 R 50 50 1 1 B
+X D7 10 -500 -100 100 R 50 50 1 1 B
+X D8 11 -500 -200 100 R 50 50 1 1 B
+X D9 12 -500 -300 100 R 50 50 1 1 B
+X D10 13 -500 -400 100 R 50 50 1 1 B
+X D11 14 -500 -500 100 R 50 50 1 1 B
+X D12 15 -500 -600 100 R 50 50 1 1 B
+X D13 16 -500 -700 100 R 50 50 1 1 B
+X 3V3 17 100 1000 100 D 50 50 1 1 w
+X AREF 18 500 200 100 L 50 50 1 1 I
+X A0 19 500 0 100 L 50 50 1 1 B
+X D0/RX 2 -500 600 100 R 50 50 1 1 B
+X A1 20 500 -100 100 L 50 50 1 1 B
+X A2 21 500 -200 100 L 50 50 1 1 B
+X A3 22 500 -300 100 L 50 50 1 1 B
+X A4 23 500 -400 100 L 50 50 1 1 B
+X A5 24 500 -500 100 L 50 50 1 1 B
+X A6 25 500 -600 100 L 50 50 1 1 B
+X A7 26 500 -700 100 L 50 50 1 1 B
+X +5V 27 200 1000 100 D 50 50 1 1 w
+X ~RESET 28 500 600 100 L 50 50 1 1 I
+X GND 29 100 -1000 100 U 50 50 1 1 W
+X ~RESET 3 500 500 100 L 50 50 1 1 I
+X VIN 30 -100 1000 100 D 50 50 1 1 W
+X GND 4 0 -1000 100 U 50 50 1 1 W
+X D2 5 -500 400 100 R 50 50 1 1 B
+X D3 6 -500 300 100 R 50 50 1 1 B
+X D4 7 -500 200 100 R 50 50 1 1 B
+X D5 8 -500 100 100 R 50 50 1 1 B
+X D6 9 -500 0 100 R 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
 # Conn_01x06
 #
 DEF Conn_01x06 J 0 40 Y N 1 F N
@@ -543,6 +589,35 @@ X IRQ 8 -500 -300 150 R 50 50 1 1 O
 ENDDRAW
 ENDDEF
 #
+# OSTTC022162
+#
+DEF OSTTC022162 J 0 40 Y Y 1 F N
+F0 "J" -100 -50 50 H V R CNN
+F1 "OSTTC022162" 50 -200 50 H V C CNN
+F2 "digikey-footprints:Term_Block_1x2_P5.08MM" 200 200 60 H I L CNN
+F3 "http://www.on-shore.com/wp-content/uploads/OSTTCXX2162.pdf" 200 300 60 H I L CNN
+F4 "ED2609-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "OSTTC022162" 200 500 60 H I L CNN "MPN"
+F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
+F7 "Terminal Blocks - Wire to Board" 200 700 60 H I L CNN "Family"
+F8 "http://www.on-shore.com/wp-content/uploads/OSTTCXX2162.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/on-shore-technology-inc/OSTTC022162/ED2609-ND/614558" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "TERM BLK 2P SIDE ENT 5.08MM PCB" 200 1000 60 H I L CNN "Description"
+F11 "On Shore Technology Inc." 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C 0 -100 25 1 1 0 N
+C 100 -100 25 1 1 0 N
+S -50 0 150 -150 1 1 0 f
+P 2 1 1 0 0 -75 0 -125 N
+P 2 1 1 0 25 -100 -25 -100 N
+P 2 1 1 0 75 -100 125 -100 N
+P 2 1 1 0 100 -75 100 -125 N
+X ~ 1 0 100 100 D 50 50 1 1 P
+X ~ 2 100 100 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # OSTTC030162
 #
 DEF OSTTC030162 J 0 40 Y Y 1 F N
@@ -573,6 +648,47 @@ P 2 1 1 0 200 25 200 -25 N
 X ~ 1 0 200 100 D 50 50 1 1 P
 X ~ 2 100 200 100 D 50 50 1 1 P
 X ~ 3 200 200 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# PC-1777574
+#
+DEF PC-1777574 J 0 40 Y Y 1 F N
+F0 "J" -100 -50 50 H V R CNN
+F1 "PC-1777574" 200 -200 50 H V C CNN
+F2 "digikey-footprints:Term_Block_1x5_P5mm" 200 200 60 H I L CNN
+F3 "" 200 300 60 H I L CNN
+F4 "277-9764-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "1777574" 200 500 60 H I L CNN "MPN"
+F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
+F7 "Terminal Blocks - Wire to Board" 200 700 60 H I L CNN "Family"
+F8 "https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1777574.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "https://www.digikey.com/product-detail/en/phoenix-contact/1777574/277-9764-ND/3991606" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "TERM BLK 5POS SIDE ENTRY 6.35MM PCB" 200 1000 60 H I L CNN "Description"
+F11 "Phoenix Contact" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C 0 -100 25 1 1 0 N
+C 100 -100 25 1 1 0 N
+C 200 -100 25 1 1 0 N
+C 300 -100 25 1 1 0 N
+C 400 -100 25 1 1 0 N
+S -50 0 450 -150 1 1 0 f
+P 2 1 1 0 0 -75 0 -125 N
+P 2 1 1 0 25 -100 -25 -100 N
+P 2 1 1 0 75 -100 125 -100 N
+P 2 1 1 0 100 -75 100 -125 N
+P 2 1 1 0 200 -75 200 -125 N
+P 2 1 1 0 225 -100 175 -100 N
+P 2 1 1 0 275 -100 325 -100 N
+P 2 1 1 0 300 -75 300 -125 N
+P 2 1 1 0 375 -100 425 -100 N
+P 2 1 1 0 400 -75 400 -125 N
+X ~ 1 0 100 100 D 50 50 1 1 P
+X ~ 2 100 100 100 D 50 50 1 1 P
+X ~ 3 200 100 100 D 50 50 1 1 P
+X ~ 4 300 100 100 D 50 50 1 1 P
+X ~ 5 400 100 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
@@ -618,6 +734,105 @@ X VCC 5 0 600 150 D 50 50 1 1 W
 X GND 6 0 -600 150 U 50 50 1 1 W
 X IRQ 7 -500 -250 150 R 50 50 1 1 O
 X RSTO 8 -500 -350 150 R 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
+# TDPT-1017503
+#
+DEF TDPT-1017503 J 0 40 Y Y 1 F N
+F0 "J" -100 -50 50 H V R CNN
+F1 "TDPT-1017503" 50 -200 50 H V C CNN
+F2 "digikey-footprints:Term_Block_1x2_P5.08MM" 200 200 60 H I L CNN
+F3 "" 200 300 60 H I L CNN
+F4 "277-17514-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "1017503" 200 500 60 H I L CNN "MPN"
+F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
+F7 "Terminal Blocks - Wire to Board" 200 700 60 H I L CNN "Family"
+F8 "https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1017503_Ds.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "https://www.digikey.com/product-detail/en/phoenix-contact/1017503/277-17514-ND/9346604" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "TERM BLK 2P SIDE ENT 5.08MM PCB" 200 1000 60 H I L CNN "Description"
+F11 "On Shore Technology Inc." 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C 0 -100 25 1 1 0 N
+C 100 -100 25 1 1 0 N
+S -50 0 150 -150 1 1 0 f
+P 2 1 1 0 0 -75 0 -125 N
+P 2 1 1 0 25 -100 -25 -100 N
+P 2 1 1 0 75 -100 125 -100 N
+P 2 1 1 0 100 -75 100 -125 N
+X ~ 1 0 100 100 D 50 50 1 1 P
+X ~ 2 100 100 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# TDPT-1017521
+#
+DEF TDPT-1017521 J 0 40 Y Y 1 F N
+F0 "J" -100 -50 50 H V R CNN
+F1 "TDPT-1017521" 50 -200 50 H V C CNN
+F2 "digikey-footprints:Term_Block_1x2_P5.08MM" 200 200 60 H I L CNN
+F3 "" 200 300 60 H I L CNN
+F4 "277-17525-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "1017521" 200 500 60 H I L CNN "MPN"
+F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
+F7 "Terminal Blocks - Wire to Board" 200 700 60 H I L CNN "Family"
+F8 "https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1017521_Ds.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "https://www.digikey.com/product-detail/en/phoenix-contact/1017521/277-17525-ND/9346615" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "TERM BLK 2P SIDE ENT 6.35MM PCB" 200 1000 60 H I L CNN "Description"
+F11 "Phoenix Contact" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C 0 -100 25 1 1 0 N
+C 100 -100 25 1 1 0 N
+S -50 0 150 -150 1 1 0 f
+P 2 1 1 0 0 -75 0 -125 N
+P 2 1 1 0 25 -100 -25 -100 N
+P 2 1 1 0 75 -100 125 -100 N
+P 2 1 1 0 100 -75 100 -125 N
+X ~ 1 0 100 100 D 50 50 1 1 P
+X ~ 2 100 100 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# TDPT-1017534
+#
+DEF TDPT-1017534 J 0 40 Y Y 1 F N
+F0 "J" -100 -50 50 H V R CNN
+F1 "TDPT-1017534" 200 -200 50 H V C CNN
+F2 "digikey-footprints:Term_Block_1x5_P5mm" 200 200 60 H I L CNN
+F3 "" 200 300 60 H I L CNN
+F4 "277-17533-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "1017534" 200 500 60 H I L CNN "MPN"
+F6 "Connectors, Interconnects" 200 600 60 H I L CNN "Category"
+F7 "Terminal Blocks - Wire to Board" 200 700 60 H I L CNN "Family"
+F8 "https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1017529_Ds.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "https://www.digikey.com/product-detail/en/phoenix-contact/1017534/277-17533-ND/9346623" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "TERM BLK 5POS SIDE ENTRY 10.16MM PCB" 200 1000 60 H I L CNN "Description"
+F11 "Phoenix Contact" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C 0 -100 25 1 1 0 N
+C 100 -100 25 1 1 0 N
+C 200 -100 25 1 1 0 N
+C 300 -100 25 1 1 0 N
+C 400 -100 25 1 1 0 N
+S -50 0 450 -150 1 1 0 f
+P 2 1 1 0 0 -75 0 -125 N
+P 2 1 1 0 25 -100 -25 -100 N
+P 2 1 1 0 75 -100 125 -100 N
+P 2 1 1 0 100 -75 100 -125 N
+P 2 1 1 0 200 -75 200 -125 N
+P 2 1 1 0 225 -100 175 -100 N
+P 2 1 1 0 275 -100 325 -100 N
+P 2 1 1 0 300 -75 300 -125 N
+P 2 1 1 0 375 -100 425 -100 N
+P 2 1 1 0 400 -75 400 -125 N
+X ~ 1 0 100 100 D 50 50 1 1 P
+X ~ 2 100 100 100 D 50 50 1 1 P
+X ~ 3 200 100 100 D 50 50 1 1 P
+X ~ 4 300 100 100 D 50 50 1 1 P
+X ~ 5 400 100 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
