@@ -1,4 +1,4 @@
-17695814015960450
+17697401064581428
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -65078,6 +65078,13 @@ Arduino Nano
 0
 30
 30
+Plug_Pass
+Converter_ACDC_MeanWell_IRM-05-xx_THT
+http://www.meanwell.com/webapp/product/search.aspx?prod=IRM-05
+ACDC-Converter 5W   Meanwell IRM-05
+0
+4
+4
 Plug_Pass
 Converter_ACDC_MeanWell_IRM-10-xx_THT
 http://www.meanwell.com/webapp/product/search.aspx?prod=IRM-10

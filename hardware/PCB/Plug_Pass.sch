@@ -31,18 +31,6 @@ F 3 "" H 6250 850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Plug_Pass:IRM-10-5 PS1
-U 1 1 5E90266B
-P 7650 5950
-F 0 "PS1" H 7450 6200 50  0000 C CNN
-F 1 "IRM-15-5" H 7650 5700 50  0000 C CNN
-F 2 "Plug_Pass:Converter_ACDC_MeanWell_IRM-15-5_THT" H 7650 5600 50  0001 C CNN
-F 3 "https://www.meanwell.com/Upload/PDF/IRM-15/IRM-15-SPEC.PDF" H 7650 5550 50  0001 C CNN
-F 4 "1866-3037-ND" H 7650 5950 50  0001 C CNN "Digi-Key Part Number"
-	1    7650 5950
-	1    0    0    -1  
-$EndComp
-$Comp
 L Plug_Pass:G5LE-14_DC5 RLY1
 U 1 1 5E903161
 P 4650 6000
@@ -653,6 +641,17 @@ F 10 "TERM BLK 2P SIDE ENT 5.08MM PCB" H 6650 7850 60  0001 L CNN "Description"
 F 11 "On Shore Technology Inc." H 6650 7950 60  0001 L CNN "Manufacturer"
 F 12 "Active" H 6650 8050 60  0001 L CNN "Status"
 	1    6450 6850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Plug_Pass:IRM-05-5 PS1
+U 1 1 5E98A7A4
+P 7650 5950
+F 0 "PS1" H 7650 6317 50  0000 C CNN
+F 1 "IRM-05-5" H 7650 6226 50  0000 C CNN
+F 2 "Plug_Pass:Converter_ACDC_MeanWell_IRM-05-xx_THT" H 7650 5600 50  0001 C CNN
+F 3 "https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF" H 7650 5550 50  0001 C CNN
+	1    7650 5950
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

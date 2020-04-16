@@ -89,6 +89,30 @@ D Power symbol creates a global label with name "GNDREF" , reference supply grou
 K power-flag
 $ENDCMP
 #
+$CMP IRM-05-12
+D 12V, 5W, AC-DC module power supply, MeanWell
+K 12V 5W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-05-15
+D 15V, 5W, AC-DC module power supply, MeanWell
+K 15V 5W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-05-24
+D 24V, 5W, AC-DC module power supply, MeanWell
+K 24V 5W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-05-5
+D 5V, 5W, AC-DC module power supply, MeanWell
+K 5V 5W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF
+$ENDCMP
+#
 $CMP IRM-10-12
 D 12V, 10W, AC-DC module power supply, MeanWell
 K 12V 10W AC-DC module power supply
