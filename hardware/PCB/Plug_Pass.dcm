@@ -60,6 +60,12 @@ K connector
 F ~
 $ENDCMP
 #
+$CMP Conn_02x04_Odd_Even
+D Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)
+K connector
+F ~
+$ENDCMP
+#
 $CMP Conn_WallPlug_Earth
 D 3-pin general wall plug, with Earth wire (110VAC, 220VAC)
 K wall plug 110VAC 220VAC
