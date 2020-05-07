@@ -90,6 +90,12 @@ K Z1011-ND G5LE
 F https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5le.pdf
 $ENDCMP
 #
+$CMP G5V-1-DC5
+D RELAY GEN PURPOSE SPDT 1A 5VDC
+K Z773-ND G5V-1
+F https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5v_1.pdf
+$ENDCMP
+#
 $CMP GNDREF
 D Power symbol creates a global label with name "GNDREF" , reference supply ground
 K power-flag

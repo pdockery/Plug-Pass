@@ -545,6 +545,45 @@ X COIL 5 -200 -300 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# G5V-1-DC5
+#
+DEF G5V-1-DC5 RLY 0 40 Y N 1 F N
+F0 "RLY" -400 250 50 H V C CNN
+F1 "G5V-1-DC5" -370 -80 50 V V C CNN
+F2 "digikey-footprints:Relay_THT_G5V-1" 200 200 50 H I L CNN
+F3 "https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5v_1.pdf" 200 300 60 H I L CNN
+F4 "Z773-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "G5V-1-DC5" 200 500 60 H I L CNN "MPN"
+F6 "Relays" 200 600 60 H I L CNN "Category"
+F7 "Signal Relays, Up to 2 Amps" 200 700 60 H I L CNN "Family"
+F8 "https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5v_1.pdf" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/omron-electronics-inc-emc-div/G5V-1-DC5/Z773-ND/87831" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "RELAY GEN PURPOSE SPDT 1A 5VDC" 200 1000 60 H I L CNN "Description"
+F11 "Omron Electronics Inc-EMC Div" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C 0 110 14 0 1 0 F
+C 100 -80 14 0 1 0 F
+C 200 110 14 0 1 0 F
+S -300 200 300 -200 0 1 0 f
+S -275 40 -125 -40 0 1 0 N
+P 2 0 1 0 -255 -40 -145 40 N
+P 2 0 1 0 -200 -40 -200 -200 N
+P 2 0 1 0 -200 40 -200 200 N
+P 2 0 1 0 0 -200 0 -80 N
+P 2 0 1 0 0 200 0 120 N
+P 2 0 1 0 100 -70 190 125 N
+P 2 0 1 0 200 200 200 120 N
+P 3 0 1 0 200 -200 200 -80 0 -80 N
+X NC 1 200 300 100 D 50 50 1 1 P
+X NO 10 0 300 100 D 50 50 1 1 P
+X COIL 2 -200 -300 100 U 50 50 1 1 P
+X COM 5 0 -300 100 U 50 50 1 1 P
+X COM 6 200 -300 100 U 50 50 1 1 P
+X COIL 9 -200 300 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # GNDREF
 #
 DEF GNDREF #PWR 0 0 Y Y 1 F P

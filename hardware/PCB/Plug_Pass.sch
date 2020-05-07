@@ -94,7 +94,7 @@ SQW
 Text Label 8100 1750 2    50   ~ 0
 32K
 Text Label 8100 2150 2    50   ~ 0
-VCC
++5V
 Text Label 8100 2250 2    50   ~ 0
 GND
 $Comp
@@ -117,7 +117,7 @@ MOSI
 Text Label 3700 1950 0    50   ~ 0
 SS
 Text Label 3700 2050 0    50   ~ 0
-VCC
++5V
 Text Label 3700 2150 0    50   ~ 0
 GND
 Text Label 3700 2250 0    50   ~ 0
@@ -212,63 +212,6 @@ F 3 "" H 6400 4850 50  0001 C CNN
 	1    6400 4850
 	-1   0    0    1   
 $EndComp
-$Comp
-L Plug_Pass:QuickDisconnect J6
-U 1 1 5E98B561
-P 4000 4950
-F 0 "J6" H 4150 5050 50  0000 C CNN
-F 1 "QuickDisconnect" H 4000 4800 50  0000 C CNN
-F 2 "" H 4000 4950 50  0001 C CNN
-F 3 "" H 4000 4950 50  0001 C CNN
-	1    4000 4950
-	-1   0    0    1   
-$EndComp
-$Comp
-L Plug_Pass:QuickDisconnect J4
-U 1 1 5E98BCE6
-P 5250 4850
-F 0 "J4" H 5250 4750 50  0000 C CNN
-F 1 "QuickDisconnect" H 5250 4950 50  0000 C CNN
-F 2 "" H 5250 4850 50  0001 C CNN
-F 3 "" H 5250 4850 50  0001 C CNN
-	1    5250 4850
-	1    0    0    -1  
-$EndComp
-$Comp
-L Plug_Pass:GNDREF #PWR012
-U 1 1 5E98CA97
-P 5150 4550
-F 0 "#PWR012" H 5150 4300 50  0001 C CNN
-F 1 "GNDREF" H 5150 4400 50  0000 C CNN
-F 2 "" H 5150 4550 50  0001 C CNN
-F 3 "" H 5150 4550 50  0001 C CNN
-	1    5150 4550
-	-1   0    0    1   
-$EndComp
-$Comp
-L Plug_Pass:G5LE-14_DC5 RLY2
-U 1 1 5E98DD8A
-P 4650 4850
-F 0 "RLY2" V 4185 4850 50  0000 C CNN
-F 1 "T95S5D22-5" V 4276 4850 50  0000 C CNN
-F 2 "Plug_Pass:RLY-T9AS5D22-5" H 4850 5050 50  0001 L CNN
-F 3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1308242_T9A&DocType=DS&DocLang=English" H 4850 5150 60  0001 L CNN
-F 4 "PB1015-ND" H 4850 5250 60  0001 L CNN "Digi-Key_PN"
-F 5 "T9AS5D22-5" H 4850 5350 60  0001 L CNN "MPN"
-F 6 "Relays" H 4850 5450 60  0001 L CNN "Category"
-F 7 "Power Relays, Over 2 Amps" H 4850 5550 60  0001 L CNN "Family"
-F 8 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1308242_T9A&DocType=DS&DocLang=English" H 4850 5650 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "https://www.digikey.com/product-detail/en/te-connectivity-potter-brumfield-relays/T9AS5D22-5/PB1015-ND/1095336" H 4850 5750 60  0001 L CNN "DK_Detail_Page"
-F 10 "RELAY GEN PURPOSE SPDT 20A 5V" H 4850 5850 60  0001 L CNN "Description"
-F 11 "TE Connectivity Potter & Brumfield Relays" H 4850 5950 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 4850 6050 60  0001 L CNN "Status"
-	1    4650 4850
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	3650 4950 3800 4950
-Wire Wire Line
-	4150 4950 4350 4950
 Connection ~ 6400 4850
 Wire Wire Line
 	6400 4850 6550 4850
@@ -299,51 +242,20 @@ Wire Wire Line
 Wire Wire Line
 	6050 4850 6400 4850
 Wire Wire Line
-	4950 4850 5100 4850
-Wire Wire Line
-	4950 4650 5150 4650
-Wire Wire Line
-	5150 4650 5150 4550
-NoConn ~ 4950 5050
-$Comp
-L Plug_Pass:Conn_01x06 J7
-U 1 1 5EA5F967
-P 8750 5750
-F 0 "J7" H 8800 6050 50  0000 C CNN
-F 1 "Conn_01x06" V 8850 5700 50  0000 C CNN
-F 2 "Plug_Pass:PinSocket_1x06_P2.54mm_Vertical" H 8750 5750 50  0001 C CNN
-F 3 "~" H 8750 5750 50  0001 C CNN
-	1    8750 5750
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8050 6050 8250 6050
+	8050 6050 8100 6050
 Wire Wire Line
 	8050 5850 8550 5850
 Wire Wire Line
-	3300 4050 3300 4650
-Wire Wire Line
 	3300 5800 4350 5800
-Wire Wire Line
-	4350 4650 3300 4650
-Connection ~ 3300 4650
-Wire Wire Line
-	3300 4650 3300 5800
 Text Label 8550 5850 2    50   ~ 0
 VCC
-Text Label 8550 6050 2    50   ~ 0
+Text Label 8550 5950 2    50   ~ 0
 GND
-Text Label 8550 5550 2    50   ~ 0
+Text Label 8550 5650 2    50   ~ 0
 RelayPin
 Wire Wire Line
-	8100 5550 8100 4050
-Wire Wire Line
-	8100 5550 8550 5550
-Wire Wire Line
 	8100 4050 3300 4050
-NoConn ~ 8550 5650
 NoConn ~ 8550 5750
-NoConn ~ 8550 5950
 $Comp
 L Plug_Pass:GNDREF #PWR015
 U 1 1 5EAB1350
@@ -357,20 +269,6 @@ F 3 "" H 8250 6150 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	8250 6050 8250 6150
-Connection ~ 8250 6050
-Wire Wire Line
-	8250 6050 8550 6050
-$Comp
-L Plug_Pass:Conn_01x06 J3
-U 1 1 5EB180BD
-P 3500 2850
-F 0 "J3" H 3550 3150 50  0000 C CNN
-F 1 "Conn_01x06" V 3600 2800 50  0000 C CNN
-F 2 "Plug_Pass:PinHeader_1x06_P2.54mm_Vertical" H 3500 2850 50  0001 C CNN
-F 3 "~" H 3500 2850 50  0001 C CNN
-	1    3500 2850
-	-1   0    0    -1  
-$EndComp
 Text Label 3700 2650 0    50   ~ 0
 RelayPin
 $Comp
@@ -395,7 +293,7 @@ Wire Wire Line
 Wire Wire Line
 	7100 2050 8100 2050
 Wire Wire Line
-	3700 2650 5550 2650
+	3700 2650 4450 2650
 Wire Wire Line
 	3700 1650 5550 1650
 Wire Wire Line
@@ -426,42 +324,40 @@ F 3 "" H 4200 2250 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	4350 2950 4350 3050
+	4350 2850 4350 2950
 Wire Wire Line
-	3700 2950 4350 2950
+	3700 2850 4350 2850
 Wire Wire Line
-	4200 3150 4200 3250
+	4200 2950 4200 3050
 Wire Wire Line
-	3700 3150 4200 3150
+	3700 2950 4200 2950
 $Comp
 L Plug_Pass:GNDREF #PWR011
 U 1 1 5EB6AED9
-P 4200 3250
-F 0 "#PWR011" H 4200 3000 50  0001 C CNN
-F 1 "GNDREF" H 4205 3077 50  0000 C CNN
-F 2 "" H 4200 3250 50  0001 C CNN
-F 3 "" H 4200 3250 50  0001 C CNN
-	1    4200 3250
+P 4200 3050
+F 0 "#PWR011" H 4200 2800 50  0001 C CNN
+F 1 "GNDREF" H 4205 2877 50  0000 C CNN
+F 2 "" H 4200 3050 50  0001 C CNN
+F 3 "" H 4200 3050 50  0001 C CNN
+	1    4200 3050
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Plug_Pass:VCC #PWR010
 U 1 1 5EB6AEDF
-P 4350 3050
-F 0 "#PWR010" H 4350 2900 50  0001 C CNN
-F 1 "VCC" H 4367 3223 50  0000 C CNN
-F 2 "" H 4350 3050 50  0001 C CNN
-F 3 "" H 4350 3050 50  0001 C CNN
-	1    4350 3050
+P 4350 2950
+F 0 "#PWR010" H 4350 2800 50  0001 C CNN
+F 1 "VCC" H 4367 3123 50  0000 C CNN
+F 2 "" H 4350 2950 50  0001 C CNN
+F 3 "" H 4350 2950 50  0001 C CNN
+	1    4350 2950
 	-1   0    0    1   
 $EndComp
-Text Label 3700 2950 0    50   ~ 0
+Text Label 3700 2850 0    50   ~ 0
 VCC
-Text Label 3700 3150 0    50   ~ 0
+Text Label 3700 2950 0    50   ~ 0
 GND
 NoConn ~ 3700 2750
-NoConn ~ 3700 2850
-NoConn ~ 3700 3050
 NoConn ~ 8100 1750
 NoConn ~ 8100 1850
 Wire Notes Line
@@ -475,11 +371,7 @@ Wire Notes Line
 Wire Notes Line
 	5200 6400 3950 6400
 Wire Notes Line
-	3950 6400 3950 4850
-Wire Notes Line
-	3950 4850 3500 4850
-Wire Notes Line
-	3500 4850 3500 7650
+	3950 5700 3500 5700
 Wire Notes Line
 	3500 7650 6650 7650
 Wire Notes Line
@@ -502,13 +394,10 @@ Text Notes 8650 2450 1    50   ~ 0
 Female socket connector \nfor RTC3231 module
 Text Notes 3250 2400 1    50   ~ 0
 Female socket connector \nfor PN532 NFC Module
-Text Notes 3300 3400 1    50   ~ 0
-Male header connector \nfor power supply and\nrelay shield
-Text Notes 9100 6150 1    50   ~ 0
-Female header connector \nfor arduino shield attachment
+Text Notes 3000 3300 1    50   ~ 0
+Ribbon connector for\npower supply and\nrelay shield
 Text Notes 5350 5100 0    39   ~ 0
 Open connection \nfor expansion \nto 240V outlet
-NoConn ~ 5450 4850
 Wire Notes Line
 	5200 4250 5200 6400
 Wire Notes Line
@@ -592,17 +481,6 @@ NoConn ~ 6550 1450
 NoConn ~ 27000 8650
 NoConn ~ 12850 5050
 $Comp
-L power:VAC #PWR04
-U 1 1 5E9E4A45
-P 3650 4950
-F 0 "#PWR04" H 3650 4850 50  0001 C CNN
-F 1 "VAC" H 3650 5225 50  0000 C CNN
-F 2 "" H 3650 4950 50  0001 C CNN
-F 3 "" H 3650 4950 50  0001 C CNN
-	1    3650 4950
-	-1   0    0    1   
-$EndComp
-$Comp
 L power:VAC #PWR05
 U 1 1 5E9E4DD8
 P 3700 6100
@@ -622,14 +500,13 @@ Wire Wire Line
 Connection ~ 4250 6100
 Wire Wire Line
 	4250 6100 4350 6100
-NoConn ~ 6550 6750
 $Comp
 L Plug_Pass:TDPT-1017503 J10
 U 1 1 5E984D8C
 P 6450 6850
 F 0 "J10" H 6300 6850 50  0000 L CNN
 F 1 "TDPT-1017503" H 5800 6750 50  0000 L CNN
-F 2 "Plug_Pass:TDPT_2P_5.08MM" H 6650 7050 60  0001 L CNN
+F 2 "Plug_Pass:TDPT_2P_6.35MM" H 6650 7050 60  0001 L CNN
 F 3 "https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1017503_Ds.pdf" H 6650 7150 60  0001 L CNN
 F 4 "277-17514-ND" H 6650 7250 60  0001 L CNN "Digi-Key_PN"
 F 5 "1017503" H 6650 7350 60  0001 L CNN "MPN"
@@ -654,4 +531,147 @@ F 3 "https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF" H 7650 5550 50 
 	1    7650 5950
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	3300 4050 3300 5800
+Wire Notes Line
+	3950 5700 3950 6400
+Wire Notes Line
+	3500 5700 3500 7650
+Wire Wire Line
+	8100 6050 8100 6350
+Wire Wire Line
+	8100 6350 6550 6350
+Wire Wire Line
+	6550 6350 6550 6750
+Connection ~ 8100 6050
+Wire Wire Line
+	8100 6050 8250 6050
+$Comp
+L power:Earth #PWR04
+U 1 1 5E9EA062
+P 6550 7150
+F 0 "#PWR04" H 6550 6900 50  0001 C CNN
+F 1 "Earth" H 6550 7000 50  0001 C CNN
+F 2 "" H 6550 7150 50  0001 C CNN
+F 3 "~" H 6550 7150 50  0001 C CNN
+	1    6550 7150
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	6550 7150 6550 7300
+Wire Wire Line
+	6550 7300 5350 7300
+Wire Wire Line
+	5350 7300 5350 6450
+Wire Wire Line
+	5350 6450 6100 6450
+Wire Wire Line
+	6100 6450 6100 5050
+Wire Wire Line
+	6100 5050 6550 5050
+$Comp
+L Plug_Pass:Conn_02x04_Odd_Even J3
+U 1 1 5E9F6D64
+P 3500 2750
+F 0 "J3" H 3550 3067 50  0000 C CNN
+F 1 "Conn_02x04_Odd_Even" V 3900 2600 50  0000 C CNN
+F 2 "Plug_Pass:IDC-Header_2x04_P2.54mm_Vertical" H 3500 2750 50  0001 C CNN
+F 3 "~" H 3500 2750 50  0001 C CNN
+	1    3500 2750
+	-1   0    0    -1  
+$EndComp
+NoConn ~ 3200 2650
+NoConn ~ 3200 2750
+NoConn ~ 3200 2850
+NoConn ~ 3200 2950
+Text Notes 9450 6200 1    50   ~ 0
+Ribbon connector for\npower supply and\nrelay shield
+$Comp
+L Plug_Pass:Conn_02x04_Odd_Even J4
+U 1 1 5EA059A4
+P 8750 5750
+F 0 "J4" H 8800 6067 50  0000 C CNN
+F 1 "Conn_02x04_Odd_Even" V 9150 5600 50  0000 C CNN
+F 2 "Plug_Pass:IDC-Header_2x04_P2.54mm_Vertical" H 8750 5750 50  0001 C CNN
+F 3 "~" H 8750 5750 50  0001 C CNN
+	1    8750 5750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8250 6050 8350 6050
+Wire Wire Line
+	8350 6050 8350 5950
+Wire Wire Line
+	8350 5950 8550 5950
+Connection ~ 8250 6050
+Wire Wire Line
+	8550 5650 8100 5650
+Wire Wire Line
+	8100 4050 8100 5650
+NoConn ~ 9050 5650
+NoConn ~ 9050 5750
+NoConn ~ 9050 5850
+NoConn ~ 9050 5950
+$Comp
+L Plug_Pass:G5V-1-DC5 RLY2
+U 1 1 5EB43EB5
+P 4900 2750
+F 0 "RLY2" V 5250 2900 50  0000 R CNN
+F 1 "G5V-1-DC5" V 4500 2950 50  0000 R CNN
+F 2 "Plug_Pass:Relay_THT_G5V-1" H 5100 2950 50  0001 L CNN
+F 3 "https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5v_1.pdf" H 5100 3050 60  0001 L CNN
+F 4 "Z773-ND" H 5100 3150 60  0001 L CNN "Digi-Key_PN"
+F 5 "G5V-1-DC5" H 5100 3250 60  0001 L CNN "MPN"
+F 6 "Relays" H 5100 3350 60  0001 L CNN "Category"
+F 7 "Signal Relays, Up to 2 Amps" H 5100 3450 60  0001 L CNN "Family"
+F 8 "https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5v_1.pdf" H 5100 3550 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/omron-electronics-inc-emc-div/G5V-1-DC5/Z773-ND/87831" H 5100 3650 60  0001 L CNN "DK_Detail_Page"
+F 10 "RELAY GEN PURPOSE SPDT 1A 5VDC" H 5100 3750 60  0001 L CNN "Description"
+F 11 "Omron Electronics Inc-EMC Div" H 5100 3850 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 5100 3950 60  0001 L CNN "Status"
+	1    4900 2750
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Plug_Pass:GNDREF #PWR0103
+U 1 1 5EB4697C
+P 5100 2400
+F 0 "#PWR0103" H 5100 2150 50  0001 C CNN
+F 1 "GNDREF" H 5105 2227 50  0000 C CNN
+F 2 "" H 5100 2400 50  0001 C CNN
+F 3 "" H 5100 2400 50  0001 C CNN
+	1    5100 2400
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	4350 2850 4500 2850
+Connection ~ 4350 2850
+Wire Wire Line
+	5400 2650 5550 2650
+Wire Wire Line
+	5100 2450 5100 2400
+Wire Wire Line
+	5400 3100 5100 3100
+Wire Wire Line
+	5100 3100 5100 3050
+Wire Wire Line
+	5400 2650 5400 3100
+Wire Wire Line
+	4500 2850 4500 3100
+Wire Wire Line
+	4500 3100 4700 3100
+Wire Wire Line
+	4700 3100 4700 3050
+Wire Wire Line
+	4900 2450 4900 2400
+Wire Wire Line
+	4900 2400 4450 2400
+Wire Wire Line
+	4450 2400 4450 2650
+NoConn ~ 4700 2450
+Wire Wire Line
+	4900 3050 4900 3100
+Wire Wire Line
+	4900 3100 4700 3100
+Connection ~ 4700 3100
 $EndSCHEMATC
