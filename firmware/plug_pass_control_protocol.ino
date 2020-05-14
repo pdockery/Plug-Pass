@@ -4,7 +4,7 @@
 #include <SPI.h>                        // Used in serial communication
 #include <EEPROM.h>                     // For persistent storage of data when disconnected (future charge expiration time, verified key ids, etc.)
 #include <Adafruit_PN532.h>             // For use with a PN532 to interact with RFID cards
-
+#include <Authentication_Library.h>
 
 /*---------------( Declare Constants and Pin Numbers )-----------------*/
 // If using the breakout with SPI, define the pins for SPI communication.
@@ -14,20 +14,26 @@
 #define PN532_SS   (5)
 
 char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-int relayPin = 12;                        // defines a variable to set the output pin to D12
+int relayPin = 12;                        // defines a variable to set the outut pin to D12
 int chargeStartAddress = 0;               // defines a variable to set the address location for the charge Start time in the EEPROM
 uint32_t chargeStart;                     // defines a variable to store the charge Start time
 uint8_t chargeStatus = 0;                 // defining a dummy variable to hold the most recent command to turn off or on the outlet
 uint8_t success;                          // defines a variable to check the success of an NFC card scan
+bool pass;
+bool red;
+String cardRecord;                        // defines a variable to check the success of an NFC record scan
+uint8_t startPage = 4;
+uint8_t stopPage = 5;
 uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };  // Buffer to store the returned UID after NFC card scan
+uint8_t record[] = { 0, 0, 0, 0, 0, 0, 0 };  // Buffer to store the returned record after NFC card scan
 uint8_t uidLength;                        // Length of the UID (4 or 7 bytes depending on ISO14443A card type) for NFC card scan
 uint16_t timeout = 5000;                  // defines a variable to timeout the card reader function, in ms
 uint32_t chargeTime = 30;                 // defines the amount of time, in seconds, a standard charging time will be
-String cardCode;                          // defines a string variable to check against known card codes
 
 /*-------------------------( Declare objects )--------------------------*/
 Adafruit_PN532 nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS); // Create a nfc object for a breakout with a software SPI connection
 RTC_DS3231 rtc; // Create a RealTimeClock object
+KeyDatabase keyDB;
 
 /*-------------------------------( Set up )-----------------------------*/
 void setup ()
@@ -96,6 +102,10 @@ void loop ()
     chargeStatus = 0;                   // set dummy variable to 1 as "off"
     digitalWrite(LED_BUILTIN, LOW);     // turn the LED off
   }
+  uint8_t pageOne = EEPROM.read(20);
+  uint8_t pageTwo = EEPROM.read(21);
+  uint8_t firstTime = EEPROM.read(22);
+  GetStoredCode();
 
 //  if (digitalRead(relayPin) == LOW)
 //  {
@@ -119,14 +129,96 @@ void loop ()
   if (success) 
   { 
     // Display some basic information about the card
-    Serial.print("  UID Length: "); 
-    Serial.print(uidLength, DEC); 
-    Serial.println(" bytes");
-    Serial.print("  UID Value: ");
-    nfc.PrintHex(uid, uidLength);
+//    Serial.print("  UID Length: "); 
+//    Serial.print(uidLength, DEC); 
+//    Serial.println(" bytes");
+//    Serial.print("  UID Value: ");
+//    nfc.PrintHex(uid, uidLength);
       
-    returnCardCode(cardCode);
-    if(cardCode == "04 E0 46 4A DD 64 80")
+   String initializationRecord;
+   red = GetCardRecord(keyDB.initializationPageOne, keyDB.initializationPageTwo);
+   if(red == true)
+   {
+    initializationRecord = cardRecord;
+    Serial.println(cardRecord);
+   }
+    bool admin;
+    admin = keyDB.Admin(initializationRecord);
+    
+    bool first;
+    first = keyDB.Initialization(initializationRecord);
+    if(first && firstTime ==1)
+    {
+        String key = keyDB.replacementKey;
+        SetCardRecord(keyDB.initializationPageOne, key.substring(0,4));
+        SetCardRecord(keyDB.initializationPageTwo, key.substring(4,8));
+    }
+
+   String commuterRecord;
+   red = false;
+   red = GetCardRecord(pageOne, pageTwo);
+   if(red == true)
+   {
+    commuterRecord = cardRecord;
+    Serial.println(cardRecord);
+   }
+    bool commuter;
+    commuter = (commuterRecord == GetStoredCode());
+
+    bool valid = false;
+
+    if(admin)
+    {
+      Serial.println("Card validated");  
+        Serial.print("Admin record: ");  
+        Serial.println(initializationRecord);
+        valid = true;
+    }
+    else if(commuter)
+    {
+        uint8_t newPageOne = random(4,130);
+        uint8_t newPageTwo = random(4,130);
+        red = false;
+        red = GetCardRecord(newPageOne,newPageTwo);
+        if(red == true)
+        {
+          SetStoredCode(cardRecord);
+          Serial.println(cardRecord);
+          EEPROM.put(20, newPageOne);
+          EEPROM.put(21, newPageTwo);
+          Serial.print("newPageOne: ");
+          Serial.println(newPageOne);
+          Serial.print("newPageTwo: ");
+          Serial.println(newPageTwo);
+        }
+        valid = true;
+        Serial.println("Card validated");  
+    }
+    else if(first && firstTime !=1)
+    {
+        uint8_t newPageOne = random(4,130);
+        uint8_t newPageTwo = random(4,130);
+        red = false;
+        red = GetCardRecord(newPageOne,newPageTwo);
+        if(red == true)
+        {
+          SetStoredCode(cardRecord);
+          EEPROM.put(20, newPageOne);
+          EEPROM.put(21, newPageTwo);
+          EEPROM.put(22, 1);
+          Serial.print("newPageOne: ");
+          Serial.println(newPageOne);
+          Serial.print("newPagTwo: ");
+          Serial.println(newPageTwo);
+          String key = keyDB.replacementKey;
+          SetCardRecord(keyDB.initializationPageOne, key.substring(0,4));
+          SetCardRecord(keyDB.initializationPageTwo, key.substring(4,8));
+          valid = true;
+          Serial.println("Card validated");  
+        }
+    }    
+    
+    if(valid)
     {
       Serial.println("Card validated");  
       if (chargeStatus == 0)              // if the outlet is off
@@ -141,7 +233,6 @@ void loop ()
         SetChargeStartTime();
         Serial.print("Current charge end time is ");
         PrintDateTime(chargeStart + chargeTime);
-        delay(1000);                      // adding a delay to prevent inadvertent rescans
       }
       else
       {
@@ -150,18 +241,18 @@ void loop ()
         digitalWrite(relayPin, LOW);
         chargeStatus = 0;               // set dummy variable to 1 as "off"
         digitalWrite(LED_BUILTIN, LOW); // turn the LED off
-        delay(1000);                    // adding a delay to prevent inadvertent rescans
       }
     }
     else
     {
       Serial.println("The card is invalid, no action taken");
-      delay(1000);                      // adding a delay to prevent inadvertent rescans
+
     }
 //    Serial.println();
 //    Serial.flush();
   }
 //  Serial.println();
+  delay(1000);                      // adding a delay to prevent inadvertent rescans
 }
 
 /*---------------( Functions defined in the Sketch for the Sketch )------------*/
@@ -197,14 +288,73 @@ void PrintDateTime(DateTime time)
   Serial.println();
 }
 
-void returnCardCode(String &dest)
+bool GetCardRecord(uint8_t firstPage, uint8_t secondPage)
 {
-    String cardRead;
-    for(byte i=0; i < uidLength; i++)
+    bool returnValue;
+    String stringValue;
+    String pageValue;
+    bool success_p1 = false;
+    bool success_p2 = false;
+
+      success_p1 = nfc.ntag2xx_ReadPage(firstPage, record);   
+        for(byte i=0; i < 4; i++)
+        {
+          //returnValue.concat(String(record[i] < 0x10 ? " 0" : " "));
+          pageValue.concat(String((char)record[i]));
+        }
+        Serial.println(success_p1);
+      success_p2 = nfc.ntag2xx_ReadPage(secondPage, record);  
+        for(byte i=0; i < 4; i++)
+        {
+          //returnValue.concat(String(record[i] < 0x10 ? " 0" : " "));
+          pageValue.concat(String((char)record[i]));
+        }
+        Serial.println(success_p2);
+     returnValue = (success_p1 && success_p2);
+     
+     if(returnValue == true)
+     {
+      stringValue.concat(pageValue);
+      cardRecord = stringValue.substring(0);
+     }
+
+    Serial.println(returnValue);
+    return returnValue;
+}
+
+void SetCardRecord(uint8_t page, String key)
+{
+    char buf[31];
+    key.toCharArray(buf,30);
+    nfc.ntag2xx_WritePage(4, buf);  
+}
+
+void SetStoredCode(String key)
+{
+  byte value;
+  Serial.println(key);
+  //Serial.println(randoKey, HEX);
+    for(byte i=0; i<8; i++)
     {
-      cardRead.concat(String(uid[i] < 0x10 ? " 0" : " "));
-      cardRead.concat(String(uid[i], HEX));
+      byte k = i+10;
+      EEPROM.put(k, key[i]);
+//      value = EEPROM.read(k);
+//      Serial.print(k);
+//      Serial.print("\t");
+//      Serial.print(value, HEX);
+//      Serial.println();
+    }         
+  Serial.println("code set in EEPROM");
+}
+
+String GetStoredCode()
+{
+    String returnValue;
+    for(byte k=10; k<18; k++)
+    {
+      returnValue.concat(String((char)EEPROM.read(k)));
     }
-    cardRead.toUpperCase();
-    dest = cardRead.substring(1);
+    Serial.println(returnValue);    
+    Serial.println("code recovered from EEPROM");
+    return returnValue.substring(0);
 }
