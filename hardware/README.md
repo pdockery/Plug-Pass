@@ -1,2 +1,6 @@
-#hardware
-this is where hardware files will be stored including the pcb design and the materials list
+# Hardware
+
+Contains the design files for the components for the switch including 
+* KiCAD files for PCB
+* FreeCAD files for 3D printable housing
+* Bill of materials to assemble the switch
