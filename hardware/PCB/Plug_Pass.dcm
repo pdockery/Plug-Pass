@@ -155,6 +155,12 @@ K 5V 10W AC-DC module power supply
 F https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF
 $ENDCMP
 #
+$CMP MountingHole_Pad
+D Mounting Hole with connection
+K mounting hole
+F ~
+$ENDCMP
+#
 $CMP NRF24L01_Breakout
 D Ultra low power 2.4GHz RF Transceiver, Carrier PCB
 K Low Power RF Transciever breakout carrier
@@ -183,6 +189,18 @@ $CMP RF_PN532_Breakout
 D Ultra low power 2.4GHz RF Transceiver, Carrier PCB
 K Low Power RF Transciever breakout carrier
 F http://www.nordicsemi.com/eng/content/download/2730/34105/file/nRF24L01_Product_Specification_v2_0.pdf
+$ENDCMP
+#
+$CMP Screw_Terminal_01x01
+D Generic screw terminal, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)
+K screw terminal
+F ~
+$ENDCMP
+#
+$CMP T9AS1D22-5
+D RELAY GEN PURPOSE SPST 30A 5V
+K T9AS1D22-5
+F https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1308242_T9A&DocType=DS&DocLang=English
 $ENDCMP
 #
 $CMP TDPT-1017503

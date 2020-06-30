@@ -60,6 +60,12 @@ K connector
 F ~
 $ENDCMP
 #
+$CMP Conn_02x04_Odd_Even
+D Generic connector, double row, 02x04, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)
+K connector
+F ~
+$ENDCMP
+#
 $CMP Conn_WallPlug_Earth
 D 3-pin general wall plug, with Earth wire (110VAC, 220VAC)
 K wall plug 110VAC 220VAC
@@ -84,9 +90,39 @@ K Z1011-ND G5LE
 F https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5le.pdf
 $ENDCMP
 #
+$CMP G5V-1-DC5
+D RELAY GEN PURPOSE SPDT 1A 5VDC
+K Z773-ND G5V-1
+F https://omronfs.omron.com/en_US/ecb/products/pdf/en-g5v_1.pdf
+$ENDCMP
+#
 $CMP GNDREF
 D Power symbol creates a global label with name "GNDREF" , reference supply ground
 K power-flag
+$ENDCMP
+#
+$CMP IRM-05-12
+D 12V, 5W, AC-DC module power supply, MeanWell
+K 12V 5W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-05-15
+D 15V, 5W, AC-DC module power supply, MeanWell
+K 15V 5W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-05-24
+D 24V, 5W, AC-DC module power supply, MeanWell
+K 24V 5W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-05-5
+D 5V, 5W, AC-DC module power supply, MeanWell
+K 5V 5W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF
 $ENDCMP
 #
 $CMP IRM-10-12
@@ -125,6 +161,12 @@ K Low Power RF Transciever breakout carrier
 F http://www.nordicsemi.com/eng/content/download/2730/34105/file/nRF24L01_Product_Specification_v2_0.pdf
 $ENDCMP
 #
+$CMP OSTTC022162
+D TERM BLK 2P SIDE ENT 5.08MM PCB
+K ED2609-ND OSTTC
+F http://www.on-shore.com/wp-content/uploads/OSTTCXX2162.pdf
+$ENDCMP
+#
 $CMP OSTTC030162
 D TERM BLK 3POS SIDE ENTRY 5MM PCB
 K ED2601-ND OSTTC
@@ -141,6 +183,18 @@ $CMP RF_PN532_Breakout
 D Ultra low power 2.4GHz RF Transceiver, Carrier PCB
 K Low Power RF Transciever breakout carrier
 F http://www.nordicsemi.com/eng/content/download/2730/34105/file/nRF24L01_Product_Specification_v2_0.pdf
+$ENDCMP
+#
+$CMP TDPT-1017503
+D TERM BLK 2P SIDE ENT 5.08MM PCB
+K 277-17514-ND TDPT
+F https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1017503_Ds.pdf
+$ENDCMP
+#
+$CMP TDPT-1017521
+D TERM BLK 2P SIDE ENT 6.35MM PCB
+K 277-17525-ND TDPT
+F https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1017521_Ds.pdf
 $ENDCMP
 #
 $CMP TDPT-1017534

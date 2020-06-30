@@ -1,4 +1,4 @@
-17702168818054352
+17714908062712626
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -65100,9 +65100,51 @@ ACDC-Converter 15W   Meanwell IRM-15
 4
 4
 Plug_Pass
+Ground_Pad
+
+
+0
+1
+1
+Plug_Pass
 IDC-Header_2x04_P2.54mm_Vertical
 Through hole straight IDC box header, 2x04, 2.54mm pitch, double rows
 Through hole IDC box header THT 2x04 2.54mm double row
+0
+8
+8
+Plug_Pass
+IDC-Header_2x04_P2.54mm_Vertical_Small
+Through hole straight IDC box header, 2x04, 2.54mm pitch, double rows
+Through hole IDC box header THT 2x04 2.54mm double row
+0
+8
+8
+Plug_Pass
+NANO_33_Footprint_SMD_Castell
+Through hole straight socket strip, 1x15, 2.54mm pitch
+Through hole socket strip THT 1x15 2.54mm single row
+0
+30
+30
+Plug_Pass
+NANO_33_Socket_Castell
+Through hole straight socket strip, 1x15, 2.54mm pitch
+Through hole socket strip THT 1x15 2.54mm single row
+0
+90
+30
+Plug_Pass
+PLH5-1_75
+
+
+0
+2
+1
+Plug_Pass
+PN532_NFC_PinSocket
+Through hole straight socket strip, 1x08, 2.54mm pitch, single row (from Kicad 4.0.7), script generated
+Through hole socket strip THT 1x08 2.54mm single row
 0
 8
 8
@@ -65170,12 +65212,26 @@ Through hole socket strip THT 2x04 2.54mm double row
 8
 8
 Plug_Pass
+RLY-T9AS1D22-5
+
+
+0
+4
+4
+Plug_Pass
 RLY-T9AS5D22-5
 
 
 0
 5
 5
+Plug_Pass
+RTC_PinHeader
+Through hole straight pin header, 1x06, 2.54mm pitch, single row
+Through hole pin header THT 1x06 2.54mm single row
+0
+6
+6
 Plug_Pass
 Relay_THT_G5V-1
 

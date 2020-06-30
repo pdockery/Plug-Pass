@@ -662,6 +662,22 @@ X +Vo 4 400 100 100 L 50 50 1 1 w
 ENDDRAW
 ENDDEF
 #
+# MountingHole_Pad
+#
+DEF MountingHole_Pad H 0 40 N N 1 F N
+F0 "H" 0 250 50 H V C CNN
+F1 "MountingHole_Pad" 0 175 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ MountingHole*Pad*
+$ENDFPLIST
+DRAW
+C 0 50 50 0 1 50 N
+X 1 1 0 -100 100 U 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
 # NRF24L01_Breakout
 #
 DEF NRF24L01_Breakout U 0 40 Y Y 1 F N
@@ -835,6 +851,60 @@ X VCC 5 0 600 150 D 50 50 1 1 W
 X GND 6 0 -600 150 U 50 50 1 1 W
 X IRQ 7 -500 -250 150 R 50 50 1 1 O
 X RSTO 8 -500 -350 150 R 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
+# Screw_Terminal_01x01
+#
+DEF Screw_Terminal_01x01 J 0 40 Y N 1 F N
+F0 "J" 0 100 50 H V C CNN
+F1 "Screw_Terminal_01x01" 0 -100 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ TerminalBlock*:*
+$ENDFPLIST
+DRAW
+C 0 0 25 1 1 6 N
+S -50 50 50 -50 1 1 10 f
+P 2 1 1 6 -21 13 13 -20 N
+P 2 1 1 6 -14 20 20 -13 N
+X Pin_1 1 -200 0 150 R 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# T9AS1D22-5
+#
+DEF T9AS1D22-5 RLY 0 0 Y N 1 F N
+F0 "RLY" -340 270 50 H V C CNN
+F1 "T9AS1D22-5" -350 200 50 V V R CNN
+F2 "digikey-footprints:Relay_THT_G5LE-14" 200 200 50 H I L CNN
+F3 "" 200 300 60 H I L CNN
+F4 "T9AS1D22-5-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "T9AS1D22-5" 200 500 60 H I L CNN "MPN"
+F6 "Relays" 200 600 60 H I L CNN "Category"
+F7 "Power Relays, Over 2 Amps" 200 700 60 H I L CNN "Family"
+F8 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1308242_T9A&DocType=DS&DocLang=English" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "https://www.digikey.com/product-detail/en/te-connectivity-potter-brumfield-relays/T9AS1D22-5/T9AS1D22-5-ND/414248" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "RELAY GEN PURPOSE SPST 30A 5V" 200 1000 60 H I L CNN "Description"
+F11 "TE Connectivity Potter & Brumfield Relays" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C 0 90 14 0 1 0 F
+C 100 -80 14 0 1 0 F
+S -300 200 300 -200 0 1 0 f
+S -280 40 -120 -40 0 1 0 N
+P 2 0 1 0 -260 -40 -140 40 N
+P 2 0 1 0 -200 -200 -200 -40 N
+P 2 0 1 0 -200 200 -200 40 N
+P 2 0 1 0 0 200 0 100 N
+P 2 0 1 0 100 -200 100 -90 N
+P 2 0 1 0 100 -70 190 100 N
+P 4 0 1 0 0 120 30 90 0 60 0 120 N
+X COM 1 100 -300 100 U 50 50 1 1 P
+X COIL 2 -200 300 100 D 50 50 1 1 P
+X NO 3 0 300 100 D 50 50 1 1 P
+X COIL 5 -200 -300 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
