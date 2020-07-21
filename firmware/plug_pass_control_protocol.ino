@@ -8,13 +8,13 @@
 
 /*---------------( Declare Constants and Pin Numbers )-----------------*/
 // If using the breakout with SPI, define the pins for SPI communication.
-#define PN532_SCK  (2)
-#define PN532_MISO (3)
-#define PN532_MOSI (4)
-#define PN532_SS   (5)
+//#define PN532_SCK  (13)
+//#define PN532_MISO (12)
+//#define PN532_MOSI (11)
+#define PN532_SS   (8)
 
 char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-int relayPin = 12;                        // defines a variable to set the outut pin to D12
+int relayPin = 2;                        // defines a variable to set the outut pin to D12
 int chargeStartAddress = 0;               // defines a variable to set the address location for the charge Start time in the EEPROM
 uint32_t chargeStart;                     // defines a variable to store the charge Start time
 uint8_t chargeStatus = 0;                 // defining a dummy variable to hold the most recent command to turn off or on the outlet
@@ -28,18 +28,24 @@ uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };  // Buffer to store the returned UID af
 uint8_t record[] = { 0, 0, 0, 0, 0, 0, 0 };  // Buffer to store the returned record after NFC card scan
 uint8_t uidLength;                        // Length of the UID (4 or 7 bytes depending on ISO14443A card type) for NFC card scan
 uint16_t timeout = 5000;                  // defines a variable to timeout the card reader function, in ms
-uint32_t chargeTime = 30;                 // defines the amount of time, in seconds, a standard charging time will be
+uint32_t chargeTime = 60;                 // defines the amount of time, in seconds, a standard charging time will be
 
 /*-------------------------( Declare objects )--------------------------*/
-Adafruit_PN532 nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS); // Create a nfc object for a breakout with a software SPI connection
+//Adafruit_PN532 nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS); // Create a nfc object for a breakout with a software SPI connection
+// Adapted to a breakout with a hardware SPI connection.  Note that
+// the PN532 SCK, MOSI, and MISO pins need to be connected to the Arduino's
+// hardware SPI SCK, MOSI, and MISO pins.  On an Arduino Nano Every these are
+// SCK = 13, MOSI = 11, MISO = 12.  The SS line can be any digital IO pin, which we have assigned to digital pin 8 above.
+Adafruit_PN532 nfc(PN532_SS);
 RTC_DS3231 rtc; // Create a RealTimeClock object
 KeyDatabase keyDB;
 
 /*-------------------------------( Set up )-----------------------------*/
-void setup ()
+void setup (void)
 {
-
-  Serial.begin(9600);           // Set baud rate for serial communications
+  Serial.begin(9600);
+  delay(100);
+  SPI.begin();
   delay(3000);                  // wait for console opening
   pinMode(relayPin, OUTPUT);    // establishing the relayPin as an OUTPUT
   pinMode(LED_BUILTIN, OUTPUT); // establishes built in LED pin as an output
@@ -94,7 +100,7 @@ void setup ()
 }
 
 /*---------------------------( Main Loop )-----------------------------*/
-void loop ()
+void loop (void)
 {
   if ((chargeStart + chargeTime) < rtc.now().unixtime())
   {
