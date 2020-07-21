@@ -7,11 +7,11 @@
 #include <Authentication_Library.h>
 
 /*---------------( Declare Constants and Pin Numbers )-----------------*/
-// If using the breakout with SPI, define the pins for SPI communication.
-#define PN532_SCK  (2)
-#define PN532_MISO (3)
-#define PN532_MOSI (4)
-#define PN532_SS   (5)
+// If using the breakout with SPI, define the pins for hardware SPI communication.
+//#define PN532_SCK  (13)
+//#define PN532_MISO (12)
+//#define PN532_MOSI (11)
+#define PN532_SS   (8)
 
 uint8_t success;                          // defines a variable to check the success of an NFC card scan
 String cardRecord;                        // defines a variable to check the success of an NFC record scan
@@ -25,38 +25,39 @@ char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursd
 //uint8_t record[32];
 
 /*-------------------------( Declare objects )--------------------------*/
-Adafruit_PN532 nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS); // Create a nfc object for a breakout with a software SPI connection
+//Adafruit_PN532 nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS); // Create a nfc object for a breakout with a software SPI connection
+// Adapted to a breakout with a hardware SPI connection.  Note that
+// the PN532 SCK, MOSI, and MISO pins need to be connected to the Arduino's
+// hardware SPI SCK, MOSI, and MISO pins.  On an Arduino Nano Every these are
+// SCK = 13, MOSI = 11, MISO = 12.  The SS line can be any digital IO pin, which we have assigned to digital pin 8 above.
+Adafruit_PN532 nfc(PN532_SS);
 RTC_DS3231 rtc; // Create a RealTimeClock object
 
 // For the purpose of random number generation we use analog readings from analog pins 0-3 and 6-7.
 // They should remain unplugged or the library should be modified to adapt.
 
 KeyDatabase keyDB;
-void setup() {
+void setup(void) {
  Serial.begin(9600);
+ delay(100);
+ SPI.begin();
  delay(3000);                  // wait for console opening
- 
- nfc.begin();
- uint32_t versiondata = nfc.getFirmwareVersion();
-  if (! versiondata)
-  {
-    Serial.print("Didn't find PN53x board");
-    while (1);                              // I think we're going to eventually do something different, I don't want the outlet to fail if the NFC reader fails
-  }
-  //  nfc.setPassiveActivationRetries(0xFF);  // Sets the maximum number of retries.  0xFF retries forever.  Currently using a timeout function in success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, timeout);
-  nfc.SAMConfig();                          // configure board to read RFID tags
 
-  for (int i = 0 ; i < EEPROM.length() ; i++) 
+  Serial.println(EEPROM.length());
+  for (int i = 0 ; i <= EEPROM.length() ; i++) 
   {
     EEPROM.write(i, 0);
+    Serial.println(i);
   }
-  
+  Serial.println("eeprom - check");
   if (! rtc.begin())
   {
     Serial.println("Couldn't find RTC");
     while (1);                  // I think we're going to eventually do something different, I don't want the outlet to fail if the RTC fails
   }
-
+  Serial.println("rtc - check");
+  PrintDateTime(rtc.now());
+  
   if (rtc.lostPower())
   {
     Serial.println("RTC lost power, lets set the time!");
@@ -65,11 +66,30 @@ void setup() {
     Serial.println("RTC time set to serial time");
     PrintDateTime(rtc.now());
   }
-  SetChargeStartTime();  
+  PrintDateTime(rtc.now());
+  SetChargeStartTime(); 
+   
+  nfc.begin();
+  delay(100);
+  Serial.println("nfc began");
+ uint32_t versiondata = nfc.getFirmwareVersion();
+ Serial.println("nfc firmware success");
+ Serial.println(versiondata);
+  if (! versiondata)
+  {
+    Serial.print("Didn't find PN53x board");
+    while (1);                              // I think we're going to eventually do something different, I don't want the outlet to fail if the NFC reader fails
+  }
+  //  nfc.setPassiveActivationRetries(0xFF);  // Sets the maximum number of retries.  0xFF retries forever.  Currently using a timeout function in success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, timeout);
+ 
+  nfc.SAMConfig();                          // configure board to read RFID tags 
+   Serial.println("NFC - check");
+
 }
 
-void loop() {
+void loop(void) {
   rx_byte = 0;
+  PrintDateTime(rtc.now());
   Serial.println("Enter A to program Admin card, or Enter C to program Commuter card");
   while(!Serial.available()){}
   if (Serial.available() > 0) {    // is a character available?
@@ -125,6 +145,7 @@ void loop() {
       for (uint8_t i = 4; i <= 129; i++) 
       {
         String randomKey = keyDB.GeneratePsuedoRandomKey();
+        Serial.println(randomKey);
         SetCardRecord(i, randomKey);
         delay(10);
         PrintCardRecord(i);
@@ -175,18 +196,29 @@ void SetChargeStartTime()
 
 void SetCardRecord(uint8_t page, String key)
 {
-    char buf[31];
-    key.toCharArray(buf,30);
+//    Serial.println(page);
+    char buf[6];
+    memset(buf,0,sizeof(buf));
+//    Serial.println(buf);
+    key.toCharArray(buf,5);
+//    Serial.println(buf[0]);
+//    Serial.println(buf[1]);
+//    Serial.println(buf[2]);
+//    Serial.println(buf[3]);
+//    Serial.println(buf[4]);
+//    Serial.println(buf[5]);
+//    Serial.println(buf);
+//    Serial.println(key);
     nfc.ntag2xx_WritePage(page, buf);  
 }
 
 void PrintCardRecord(uint8_t page)
 {
+    uint8_t data[32];
+    success = nfc.ntag2xx_ReadPage(page, data);
     Serial.print("Page ");
     Serial.print(page);
     Serial.print(": ");
-    uint8_t data[32];
-    success = nfc.ntag2xx_ReadPage(page, data);
     if (success) 
     {
       // Dump the page data
