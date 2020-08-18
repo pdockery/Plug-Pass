@@ -44,16 +44,35 @@ KeyDatabase keyDB;
 void setup (void)
 {
   Serial.begin(9600);
-  delay(100);
+  delay(3000);
   SPI.begin();
   delay(3000);                  // wait for console opening
   pinMode(relayPin, OUTPUT);    // establishing the relayPin as an OUTPUT
   pinMode(LED_BUILTIN, OUTPUT); // establishes built in LED pin as an output
-  
-  if (! rtc.begin())
+  byte i = 1;
+  if (! rtc.begin() && i <= 10 )
   {
     Serial.println("Couldn't find RTC");
-    while (1);                  // I think we're going to eventually do something different, I don't want the outlet to fail if the RTC fails
+    Serial.println("attempting to reconnected");
+    digitalWrite(relayPin, LOW);
+    digitalWrite(relayPin, HIGH);
+    delay(1000);
+    digitalWrite(relayPin, LOW);
+    delay(3000);
+    //Serial.print("Temperature: ");
+    //Serial.print(rtc.getTemperature());
+    //Serial.println(" C");
+    //Serial.print("voltage: ");
+    //int b_A7 = analogRead(A7);
+    //float v_A7 = b_A7 * (5.0 / 1023.0);
+    //Serial.println(v_A7);
+    //while (1);                  // I think we're going to eventually do something different, I don't want the outlet to fail if the RTC fails
+  }
+  else if (! rtc.begin())
+  {
+    Serial.println("Couldn't find RTC, reconnection attempts failed");
+    //EEPROM.put(40, analogRead(A7));
+    while (1);
   }
   GetChargeStartTime();
   if (rtc.lostPower())
@@ -90,11 +109,40 @@ void setup (void)
 
   nfc.begin();
   uint32_t versiondata = nfc.getFirmwareVersion();
-  if (! versiondata)
-  {
-    Serial.print("Didn't find PN53x board");
-    while (1);                              // I think we're going to eventually do something different, I don't want the outlet to fail if the NFC reader fails
-  }
+  i = 1;
+  if(i<=10 && ! versiondata)
+    {
+      Serial.println("Didn't find PN53x board");
+      Serial.println("attempting to restart SPI connection");
+      digitalWrite(relayPin, LOW);
+      digitalWrite(relayPin, HIGH);
+      delay(3000);
+      digitalWrite(relayPin, LOW);
+      delay(100);
+      digitalWrite(relayPin, HIGH);
+      delay(3000);
+      digitalWrite(relayPin, LOW);
+      delay(3000);
+      SPI.begin(); 
+      delay(100);
+      nfc.begin();
+      uint32_t versiondata = nfc.getFirmwareVersion();
+      //Serial.print("Temperature: ");
+      //Serial.print(rtc.getTemperature());
+      //Serial.println(" C");
+      //Serial.print("voltage: ");
+      //int b_A7 = analogRead(A7);
+      //float v_A7 = b_A7 * (5.0 / 1023.0);
+      //Serial.println(v_A7);
+      i=i+1;
+    }
+    else if ( ! versiondata)
+    {
+      Serial.println("Didn't find PN53x board, reconnection attempts failed");
+      //EEPROM.put(40, analogRead(A7));
+      while (1); // halt
+    }
+  
 //  nfc.setPassiveActivationRetries(0xFF);  // Sets the maximum number of retries.  0xFF retries forever.  Currently using a timeout function in success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, timeout);
   nfc.SAMConfig();                          // configure board to read RFID tags
 }
@@ -239,6 +287,7 @@ void loop (void)
         SetChargeStartTime();
         Serial.print("Current charge end time is ");
         PrintDateTime(chargeStart + chargeTime);
+        delay(1000);                      // adding a delay to prevent inadvertent rescans
       }
       else
       {
@@ -247,18 +296,32 @@ void loop (void)
         digitalWrite(relayPin, LOW);
         chargeStatus = 0;               // set dummy variable to 1 as "off"
         digitalWrite(LED_BUILTIN, LOW); // turn the LED off
+        delay(1000);                      // adding a delay to prevent inadvertent rescans
       }
     }
     else
     {
       Serial.println("The card is invalid, no action taken");
+      delay(1000);                      // adding a delay to prevent inadvertent rescans
 
     }
 //    Serial.println();
 //    Serial.flush();
   }
 //  Serial.println();
-  delay(1000);                      // adding a delay to prevent inadvertent rescans
+//    Serial.print("Temperature: ");
+//    Serial.print(rtc.getTemperature());
+//    Serial.println(" C");
+//    Serial.print("voltage: ");
+//    int b_A7 = analogRead(A7);
+//    Serial.println(b_A7);
+//    float v_A7 = b_A7 * (5.0 / 1023.0);
+//    Serial.println(v_A7);
+//    EEPROM.put(40, analogRead(A7));
+//    int e_A7;
+//    EEPROM.get(40, e_A7);
+//    Serial.println(e_A7);
+  
 }
 
 /*---------------( Functions defined in the Sketch for the Sketch )------------*/
