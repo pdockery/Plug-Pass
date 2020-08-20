@@ -8,13 +8,13 @@
 
 /*---------------( Declare Constants and Pin Numbers )-----------------*/
 // If using the breakout with SPI, define the pins for SPI communication.
-#define PN532_SCK  (2)
-#define PN532_MISO (3)
-#define PN532_MOSI (4)
-#define PN532_SS   (5)
+//#define PN532_SCK  (13)
+//#define PN532_MISO (12)
+//#define PN532_MOSI (11)
+#define PN532_SS   (8)
 
 char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-int relayPin = 12;                        // defines a variable to set the outut pin to D12
+int relayPin = 2;                        // defines a variable to set the outut pin to D12
 int chargeStartAddress = 0;               // defines a variable to set the address location for the charge Start time in the EEPROM
 uint32_t chargeStart;                     // defines a variable to store the charge Start time
 uint8_t chargeStatus = 0;                 // defining a dummy variable to hold the most recent command to turn off or on the outlet
@@ -28,26 +28,51 @@ uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };  // Buffer to store the returned UID af
 uint8_t record[] = { 0, 0, 0, 0, 0, 0, 0 };  // Buffer to store the returned record after NFC card scan
 uint8_t uidLength;                        // Length of the UID (4 or 7 bytes depending on ISO14443A card type) for NFC card scan
 uint16_t timeout = 5000;                  // defines a variable to timeout the card reader function, in ms
-uint32_t chargeTime = 30;                 // defines the amount of time, in seconds, a standard charging time will be
+uint32_t chargeTime = 1440;                 // defines the amount of time, in seconds, a standard charging time will be
 
 /*-------------------------( Declare objects )--------------------------*/
-Adafruit_PN532 nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS); // Create a nfc object for a breakout with a software SPI connection
+//Adafruit_PN532 nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS); // Create a nfc object for a breakout with a software SPI connection
+// Adapted to a breakout with a hardware SPI connection.  Note that
+// the PN532 SCK, MOSI, and MISO pins need to be connected to the Arduino's
+// hardware SPI SCK, MOSI, and MISO pins.  On an Arduino Nano Every these are
+// SCK = 13, MOSI = 11, MISO = 12.  The SS line can be any digital IO pin, which we have assigned to digital pin 8 above.
+Adafruit_PN532 nfc(PN532_SS);
 RTC_DS3231 rtc; // Create a RealTimeClock object
 KeyDatabase keyDB;
 
 /*-------------------------------( Set up )-----------------------------*/
 void setup ()
 {
-
-  Serial.begin(9600);           // Set baud rate for serial communications
-  delay(3000);                  // wait for console opening
+  Serial.begin(9600);
+  delay(1000);
+  SPI.begin();
+  delay(1000);                  // wait for console opening
   pinMode(relayPin, OUTPUT);    // establishing the relayPin as an OUTPUT
   pinMode(LED_BUILTIN, OUTPUT); // establishes built in LED pin as an output
-  
-  if (! rtc.begin())
+  byte i = 1;
+  while (! rtc.begin() && i <= 10 )
   {
     Serial.println("Couldn't find RTC");
-    while (1);                  // I think we're going to eventually do something different, I don't want the outlet to fail if the RTC fails
+    Serial.println("attempting to reconnected");
+    digitalWrite(relayPin, LOW);
+    digitalWrite(relayPin, HIGH);
+    delay(1000);
+    digitalWrite(relayPin, LOW);
+    delay(3000);
+    //Serial.print("Temperature: ");
+    //Serial.print(rtc.getTemperature());
+    //Serial.println(" C");
+    //Serial.print("voltage: ");
+    //int b_A7 = analogRead(A7);
+    //float v_A7 = b_A7 * (5.0 / 1023.0);
+    //Serial.println(v_A7);
+    //while (1);                  // I think we're going to eventually do something different, I don't want the outlet to fail if the RTC fails
+  }
+  if (! rtc.begin())
+  {
+    Serial.println("Couldn't find RTC, reconnection attempts failed");
+    //EEPROM.put(40, analogRead(A7));
+    while (1);
   }
   GetChargeStartTime();
   if (rtc.lostPower())
@@ -84,13 +109,59 @@ void setup ()
 
   nfc.begin();
   uint32_t versiondata = nfc.getFirmwareVersion();
-  if (! versiondata)
-  {
-    Serial.print("Didn't find PN53x board");
-    while (1);                              // I think we're going to eventually do something different, I don't want the outlet to fail if the NFC reader fails
-  }
+  i = 1;
+  while (i<=10 && ! versiondata)
+    {
+      Serial.println("Didn't find PN53x board");
+      Serial.println("attempting to restart SPI connection");
+      digitalWrite(relayPin, LOW);
+      digitalWrite(relayPin, HIGH);
+      delay(3000);
+      digitalWrite(relayPin, LOW);
+      delay(100);
+      digitalWrite(relayPin, HIGH);
+      delay(3000);
+      digitalWrite(relayPin, LOW);
+      delay(3000);
+      SPI.begin(); 
+      delay(100);
+      nfc.begin();
+      success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, timeout);
+      if (success)
+      {
+        i=11;
+      }
+      uint32_t versiondata = nfc.getFirmwareVersion();
+      //Serial.print("Temperature: ");
+      //Serial.print(rtc.getTemperature());
+      //Serial.println(" C");
+      //Serial.print("voltage: ");
+      //int b_A7 = analogRead(A7);
+      //float v_A7 = b_A7 * (5.0 / 1023.0);
+      //Serial.println(v_A7);
+      Serial.println(i);
+      i=i+1;
+    }
+    if ( ! versiondata  && !success)
+    {
+      Serial.println("Didn't find PN53x board, reconnection attempts failed");
+      //EEPROM.put(40, analogRead(A7));
+      while (1); // halt
+    }
+  
 //  nfc.setPassiveActivationRetries(0xFF);  // Sets the maximum number of retries.  0xFF retries forever.  Currently using a timeout function in success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, timeout);
   nfc.SAMConfig();                          // configure board to read RFID tags
+    switch(random(0,3))
+    {
+      case 0:randomSeed(analogRead(A0));
+      break;
+      case 1:randomSeed(analogRead(A1));
+      break;
+      case 2:randomSeed(analogRead(A2));
+      break;
+      default:randomSeed(analogRead(A3));
+      break;
+    }
 }
 
 /*---------------------------( Main Loop )-----------------------------*/
@@ -169,7 +240,7 @@ void loop ()
 
     if(admin)
     {
-      Serial.println("Card validated");  
+      //Serial.println("Card validated");  
         Serial.print("Admin record: ");  
         Serial.println(initializationRecord);
         valid = true;
@@ -192,7 +263,7 @@ void loop ()
           Serial.println(newPageTwo);
         }
         valid = true;
-        Serial.println("Card validated");  
+        //Serial.println("Card validated");  
     }
     else if(first && firstTime !=1)
     {
@@ -214,7 +285,7 @@ void loop ()
           SetCardRecord(keyDB.initializationPageOne, key.substring(0,4));
           SetCardRecord(keyDB.initializationPageTwo, key.substring(4,8));
           valid = true;
-          Serial.println("Card validated");  
+          //Serial.println("Card validated");  
         }
     }    
     
@@ -233,26 +304,41 @@ void loop ()
         SetChargeStartTime();
         Serial.print("Current charge end time is ");
         PrintDateTime(chargeStart + chargeTime);
+        delay(1000);                      // adding a delay to prevent inadvertent rescans
       }
       else
       {
         // Open the relay
         Serial.println("Using the NFC card to open the relay");      
         digitalWrite(relayPin, LOW);
-        chargeStatus = 0;               // set dummy variable to 1 as "off"
-        digitalWrite(LED_BUILTIN, LOW); // turn the LED off
+        chargeStatus = 0;                 // set dummy variable to 1 as "off"
+        digitalWrite(LED_BUILTIN, LOW);   // turn the LED off
+        delay(1000);                      // adding a delay to prevent inadvertent rescans
       }
     }
     else
     {
       Serial.println("The card is invalid, no action taken");
+      delay(1000);                      // adding a delay to prevent inadvertent rescans
 
     }
 //    Serial.println();
 //    Serial.flush();
   }
 //  Serial.println();
-  delay(1000);                      // adding a delay to prevent inadvertent rescans
+//    Serial.print("Temperature: ");
+//    Serial.print(rtc.getTemperature());
+//    Serial.println(" C");
+//    Serial.print("voltage: ");
+//    int b_A7 = analogRead(A7);
+//    Serial.println(b_A7);
+//    float v_A7 = b_A7 * (5.0 / 1023.0);
+//    Serial.println(v_A7);
+//    EEPROM.put(40, analogRead(A7));
+//    int e_A7;
+//    EEPROM.get(40, e_A7);
+//    Serial.println(e_A7);
+  
 }
 
 /*---------------( Functions defined in the Sketch for the Sketch )------------*/
@@ -302,14 +388,14 @@ bool GetCardRecord(uint8_t firstPage, uint8_t secondPage)
           //returnValue.concat(String(record[i] < 0x10 ? " 0" : " "));
           pageValue.concat(String((char)record[i]));
         }
-        Serial.println(success_p1);
+        //Serial.println(success_p1);
       success_p2 = nfc.ntag2xx_ReadPage(secondPage, record);  
         for(byte i=0; i < 4; i++)
         {
           //returnValue.concat(String(record[i] < 0x10 ? " 0" : " "));
           pageValue.concat(String((char)record[i]));
         }
-        Serial.println(success_p2);
+        //Serial.println(success_p2);
      returnValue = (success_p1 && success_p2);
      
      if(returnValue == true)
@@ -318,7 +404,7 @@ bool GetCardRecord(uint8_t firstPage, uint8_t secondPage)
       cardRecord = stringValue.substring(0);
      }
 
-    Serial.println(returnValue);
+    //Serial.println(returnValue);
     return returnValue;
 }
 
@@ -332,7 +418,7 @@ void SetCardRecord(uint8_t page, String key)
 void SetStoredCode(String key)
 {
   byte value;
-  Serial.println(key);
+  //Serial.println(key);
   //Serial.println(randoKey, HEX);
     for(byte i=0; i<8; i++)
     {
@@ -354,7 +440,7 @@ String GetStoredCode()
     {
       returnValue.concat(String((char)EEPROM.read(k)));
     }
-    Serial.println(returnValue);    
-    Serial.println("code recovered from EEPROM");
+//    Serial.println(returnValue);    
+//    Serial.println("code recovered from EEPROM");
     return returnValue.substring(0);
 }
