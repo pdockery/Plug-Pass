@@ -5,16 +5,14 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Plug-Pass 120V RFID Control Module"
-Date "2020-06-18"
-Rev "v2.0"
+Date "2020-07-27"
+Rev "v2.2"
 Comp "Clatskanie People's Utility District"
 Comment1 "designed by: Paul Dockery, Power Manager"
 Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Notes 550  700  0    60   Italic 12
-Arduino Shield\nfor Arduino Nano, PN532, and RTC3231 sockets
 $Comp
 L power:+5V #PWR02
 U 1 1 56D747E8
@@ -57,8 +55,6 @@ F 3 "" H 5950 850 50  0001 C CNN
 	1    5950 850 
 	1    0    0    -1  
 $EndComp
-Text Notes 500  3950 0    50   Italic 10
-AC Shield\nfor Power Supply and Relay shield
 $Comp
 L Plug_Pass:Conn_01x06 J1
 U 1 1 5E94C5A7
@@ -96,29 +92,29 @@ GND
 $Comp
 L Plug_Pass:Conn_01x08 J2
 U 1 1 5E971DCA
-P 3500 1950
-F 0 "J2" H 3500 2350 50  0000 L CNN
-F 1 "Conn_01x08" V 3600 1650 50  0000 L CNN
-F 2 "Plug_Pass:PN532_NFC_PinSocket" H 3500 1950 50  0001 C CNN
-F 3 "~" H 3500 1950 50  0001 C CNN
-	1    3500 1950
+P 3200 2750
+F 0 "J2" H 3200 3150 50  0000 L CNN
+F 1 "Conn_01x08" V 3300 2450 50  0000 L CNN
+F 2 "Plug_Pass:PN532_NFC_PinSocket" H 3200 2750 50  0001 C CNN
+F 3 "~" H 3200 2750 50  0001 C CNN
+	1    3200 2750
 	-1   0    0    -1  
 $EndComp
-Text Label 3700 1650 0    50   ~ 0
+Text Label 3400 2450 0    50   ~ 0
 SCK
-Text Label 3700 1750 0    50   ~ 0
+Text Label 3400 2550 0    50   ~ 0
 MISO
-Text Label 3700 1850 0    50   ~ 0
+Text Label 3400 2650 0    50   ~ 0
 MOSI
-Text Label 3700 1950 0    50   ~ 0
+Text Label 3400 2750 0    50   ~ 0
 SS
-Text Label 3700 2050 0    50   ~ 0
+Text Label 3400 2850 0    50   ~ 0
 +5V
-Text Label 3700 2150 0    50   ~ 0
+Text Label 3400 2950 0    50   ~ 0
 GND
-Text Label 3700 2250 0    50   ~ 0
+Text Label 3400 3050 0    50   ~ 0
 IRQ
-Text Label 3700 2350 0    50   ~ 0
+Text Label 3400 3150 0    50   ~ 0
 RSTO
 Wire Notes Line
 	7000 6550 6950 6550
@@ -185,28 +181,6 @@ F 3 "" H 6150 850 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5850 4650 6500 4650
-Text Label 3100 6400 0    50   ~ 0
-VCC
-Text Label 3100 6500 0    50   ~ 0
-GND
-Text Label 3100 6200 0    50   ~ 0
-RLY2-Pin
-NoConn ~ 3100 6300
-$Comp
-L Plug_Pass:GNDREF #PWR015
-U 1 1 5EAB1350
-P 3250 6600
-F 0 "#PWR015" H 3250 6350 50  0001 C CNN
-F 1 "GNDREF" H 3250 6450 50  0000 C CNN
-F 2 "" H 3250 6600 50  0001 C CNN
-F 3 "" H 3250 6600 50  0001 C CNN
-	1    3250 6600
-	-1   0    0    -1  
-$EndComp
-Wire Wire Line
-	3250 6500 3250 6600
-Text Label 3750 2650 0    50   ~ 0
-RLY2-Pin
 $Comp
 L Plug_Pass:GNDREF #PWR09
 U 1 1 5EB1A6F0
@@ -228,76 +202,29 @@ Wire Wire Line
 	7700 2150 8100 2150
 Wire Wire Line
 	7100 2050 8100 2050
+NoConn ~ 3400 3050
+NoConn ~ 3400 3150
 Wire Wire Line
-	3700 1650 5550 1650
+	4050 2850 4050 2950
 Wire Wire Line
-	3700 1750 5550 1750
+	3400 2850 4050 2850
 Wire Wire Line
-	3700 1850 5550 1850
+	3900 2950 3900 3050
 Wire Wire Line
-	3700 1950 5550 1950
-NoConn ~ 3700 2250
-NoConn ~ 3700 2350
-Wire Wire Line
-	4350 2050 4350 2150
-Wire Wire Line
-	3700 2050 4350 2050
-Wire Wire Line
-	4200 2150 4200 2250
-Wire Wire Line
-	3700 2150 4200 2150
+	3400 2950 3900 2950
 $Comp
 L Plug_Pass:GNDREF #PWR06
 U 1 1 5EB69A11
-P 4200 2250
-F 0 "#PWR06" H 4200 2000 50  0001 C CNN
-F 1 "GNDREF" H 4205 2077 50  0000 C CNN
-F 2 "" H 4200 2250 50  0001 C CNN
-F 3 "" H 4200 2250 50  0001 C CNN
-	1    4200 2250
+P 3900 3050
+F 0 "#PWR06" H 3900 2800 50  0001 C CNN
+F 1 "GNDREF" H 3905 2877 50  0000 C CNN
+F 2 "" H 3900 3050 50  0001 C CNN
+F 3 "" H 3900 3050 50  0001 C CNN
+	1    3900 3050
 	-1   0    0    -1  
 $EndComp
-Wire Wire Line
-	4000 2850 4000 2950
-Wire Wire Line
-	3750 2850 4000 2850
-Wire Wire Line
-	3850 2950 3850 3050
-$Comp
-L Plug_Pass:GNDREF #PWR011
-U 1 1 5EB6AED9
-P 3850 3050
-F 0 "#PWR011" H 3850 2800 50  0001 C CNN
-F 1 "GNDREF" H 3855 2877 50  0000 C CNN
-F 2 "" H 3850 3050 50  0001 C CNN
-F 3 "" H 3850 3050 50  0001 C CNN
-	1    3850 3050
-	-1   0    0    -1  
-$EndComp
-$Comp
-L Plug_Pass:VCC #PWR010
-U 1 1 5EB6AEDF
-P 4000 2950
-F 0 "#PWR010" H 4000 2800 50  0001 C CNN
-F 1 "VCC" H 4017 3123 50  0000 C CNN
-F 2 "" H 4000 2950 50  0001 C CNN
-F 3 "" H 4000 2950 50  0001 C CNN
-	1    4000 2950
-	-1   0    0    1   
-$EndComp
-Text Label 3750 2850 0    50   ~ 0
-VCC
-Text Label 3750 2950 0    50   ~ 0
-GND
-NoConn ~ 3750 2750
 NoConn ~ 8100 1750
 NoConn ~ 8100 1850
-Wire Notes Line
-	11200 3750 500  3750
-Wire Notes Line
-	2150 3750 2150 3950
-Wire Notes Line
-	500  3950 2150 3950
 Wire Notes Line
 	6150 5300 7400 5300
 Wire Notes Line
@@ -306,10 +233,8 @@ Text Notes 5500 4200 0    50   ~ 0
 Primary voltages to relay and outlets are hand\nwired, not printed on circuit board.
 Text Notes 8650 2450 1    50   ~ 0
 Female socket connector \nfor RTC3231 module
-Text Notes 3250 2400 1    50   ~ 0
+Text Notes 2950 3200 1    50   ~ 0
 Female socket connector \nfor PN532 NFC Module
-Text Notes 2850 3250 1    50   ~ 0
-Ribbon connector for\npower supply and\nrelay shield
 $Comp
 L power:+5V #PWR0101
 U 1 1 5E977429
@@ -324,12 +249,12 @@ $EndComp
 $Comp
 L power:+5V #PWR0102
 U 1 1 5E9780E8
-P 4350 2150
-F 0 "#PWR0102" H 4350 2000 50  0001 C CNN
-F 1 "+5V" V 4350 2350 28  0000 C CNN
-F 2 "" H 4350 2150 50  0000 C CNN
-F 3 "" H 4350 2150 50  0000 C CNN
-	1    4350 2150
+P 4050 2950
+F 0 "#PWR0102" H 4050 2800 50  0001 C CNN
+F 1 "+5V" V 4050 3150 28  0000 C CNN
+F 2 "" H 4050 2950 50  0000 C CNN
+F 3 "" H 4050 2950 50  0000 C CNN
+	1    4050 2950
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -372,11 +297,8 @@ NoConn ~ 5550 1450
 NoConn ~ 5550 1550
 NoConn ~ 5550 2050
 NoConn ~ 5550 2150
-NoConn ~ 5550 2250
 NoConn ~ 5550 2350
 NoConn ~ 5550 2450
-NoConn ~ 5550 2550
-NoConn ~ 5550 2750
 NoConn ~ 6550 2750
 NoConn ~ 6550 2650
 NoConn ~ 6550 2350
@@ -401,30 +323,6 @@ F 3 "" H 5650 5350 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5650 5350 5550 5350
-$Comp
-L Plug_Pass:Conn_02x04_Odd_Even J3
-U 1 1 5E9F6D64
-P 3550 2750
-F 0 "J3" H 3600 2950 50  0000 C CNN
-F 1 "Conn_02x04_Odd_Even" V 4100 2600 50  0000 C CNN
-F 2 "Plug_Pass:IDC-Header_2x04_P2.54mm_Vertical_Small" H 3550 2750 50  0001 C CNN
-F 3 "~" H 3550 2750 50  0001 C CNN
-	1    3550 2750
-	-1   0    0    -1  
-$EndComp
-Text Notes 2200 6750 1    50   ~ 0
-Ribbon connector for\npower supply and\nrelay shield
-$Comp
-L Plug_Pass:Conn_02x04_Odd_Even J4
-U 1 1 5EA059A4
-P 2900 6300
-F 0 "J4" H 2950 6500 50  0000 C CNN
-F 1 "Conn_02x04_Odd_Even" V 3450 6150 50  0000 C CNN
-F 2 "Plug_Pass:IDC-Header_2x04_P2.54mm_Vertical" H 2900 6300 50  0001 C CNN
-F 3 "~" H 2900 6300 50  0001 C CNN
-	1    2900 6300
-	-1   0    0    -1  
-$EndComp
 $Comp
 L Plug_Pass:G5V-1-DC5 RLY2
 U 1 1 5ED010EF
@@ -489,8 +387,6 @@ Wire Wire Line
 	4600 5350 4600 5600
 Wire Wire Line
 	4150 6850 4100 6850
-Wire Wire Line
-	3250 6500 3100 6500
 $Comp
 L Plug_Pass:GNDREF #PWR0104
 U 1 1 5ED6AF82
@@ -517,21 +413,15 @@ Wire Wire Line
 	4700 5200 4700 5350
 Text Label 4400 6200 2    50   ~ 0
 RLY2-Pin
-Wire Wire Line
-	3100 6200 4400 6200
-Wire Wire Line
-	3750 2950 3850 2950
-Text Label 5550 2650 2    50   ~ 0
-RLY2-Pin
-Wire Wire Line
-	3750 2650 5550 2650
 Text Label 5550 1650 2    50   ~ 0
+RLY2-Pin
+Text Label 5550 2750 2    50   ~ 0
 SCK
-Text Label 5550 1750 2    50   ~ 0
+Text Label 5550 2650 2    50   ~ 0
 MISO
-Text Label 5550 1850 2    50   ~ 0
+Text Label 5550 2550 2    50   ~ 0
 MOSI
-Text Label 5550 1950 2    50   ~ 0
+Text Label 5550 2250 2    50   ~ 0
 SS
 $Comp
 L Plug_Pass:VCC #PWR0105
@@ -544,21 +434,6 @@ F 3 "" H 4100 6850 50  0001 C CNN
 	1    4100 6850
 	0    -1   -1   0   
 $EndComp
-$Comp
-L Plug_Pass:VCC #PWR0106
-U 1 1 5ED8D445
-P 3400 6500
-F 0 "#PWR0106" H 3400 6350 50  0001 C CNN
-F 1 "VCC" H 3400 6650 50  0000 C CNN
-F 2 "" H 3400 6500 50  0001 C CNN
-F 3 "" H 3400 6500 50  0001 C CNN
-	1    3400 6500
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	3100 6400 3400 6400
-Wire Wire Line
-	3400 6400 3400 6500
 $Comp
 L Plug_Pass:VCC #PWR0107
 U 1 1 5ED8F3AB
@@ -603,10 +478,6 @@ Text Label 6550 2550 0    50   ~ 0
 SCL
 Text Label 6550 2450 0    50   ~ 0
 SDA
-Wire Notes Line
-	525  750  3200 750 
-Wire Notes Line
-	3200 750  3200 500 
 $Comp
 L Plug_Pass:Conn_WallSocket_Earth J5
 U 1 1 5EAEB62E
@@ -716,50 +587,6 @@ Wire Wire Line
 Connection ~ 2950 5300
 Wire Wire Line
 	2950 5300 2950 5400
-$Comp
-L Plug_Pass:GNDREF #PWR0110
-U 1 1 5EEB5119
-P 3250 3050
-F 0 "#PWR0110" H 3250 2800 50  0001 C CNN
-F 1 "GNDREF" H 3255 2877 50  0000 C CNN
-F 2 "" H 3250 3050 50  0001 C CNN
-F 3 "" H 3250 3050 50  0001 C CNN
-	1    3250 3050
-	-1   0    0    -1  
-$EndComp
-Wire Wire Line
-	3250 2650 3250 2750
-Wire Wire Line
-	3250 2750 3250 2850
-Connection ~ 3250 2750
-Wire Wire Line
-	3250 2850 3250 2950
-Connection ~ 3250 2850
-Wire Wire Line
-	3250 2950 3250 3050
-Connection ~ 3250 2950
-$Comp
-L Plug_Pass:GNDREF #PWR0111
-U 1 1 5EEBE750
-P 2600 6600
-F 0 "#PWR0111" H 2600 6350 50  0001 C CNN
-F 1 "GNDREF" H 2600 6450 50  0000 C CNN
-F 2 "" H 2600 6600 50  0001 C CNN
-F 3 "" H 2600 6600 50  0001 C CNN
-	1    2600 6600
-	-1   0    0    -1  
-$EndComp
-Wire Wire Line
-	2600 6200 2600 6300
-Wire Wire Line
-	2600 6300 2600 6400
-Connection ~ 2600 6300
-Wire Wire Line
-	2600 6400 2600 6500
-Connection ~ 2600 6400
-Wire Wire Line
-	2600 6500 2600 6600
-Connection ~ 2600 6500
 Text Label 5450 7050 2    50   ~ 0
 NEUT
 Text Label 4950 7050 0    50   ~ 0
@@ -768,4 +595,56 @@ Wire Notes Line
 	4850 4500 5350 4500
 Wire Notes Line
 	5350 5600 5750 5600
+Wire Wire Line
+	3400 2750 4500 2750
+Wire Wire Line
+	4500 2750 4500 2250
+Wire Wire Line
+	4500 2250 5550 2250
+Wire Wire Line
+	4850 2650 4850 2550
+Wire Wire Line
+	4850 2550 5550 2550
+Wire Wire Line
+	3400 2650 4850 2650
+Wire Wire Line
+	3400 2550 4750 2550
+Wire Wire Line
+	4750 2550 4750 2750
+Wire Wire Line
+	4750 2750 4950 2750
+Wire Wire Line
+	4950 2750 4950 2650
+Wire Wire Line
+	4950 2650 5550 2650
+Wire Wire Line
+	3400 2450 5200 2450
+Wire Wire Line
+	5200 2450 5200 2750
+Wire Wire Line
+	5200 2750 5550 2750
+Wire Wire Line
+	4400 6200 4400 6250
+Wire Wire Line
+	4400 6250 3800 6250
+Wire Wire Line
+	3800 6250 3800 3500
+Wire Wire Line
+	3800 3500 2400 3500
+Wire Wire Line
+	2400 3500 2400 1650
+Wire Wire Line
+	2400 1650 5550 1650
+Text Label 4700 5200 3    50   ~ 0
+AC-L
+Text Label 4950 6850 0    50   ~ 0
+AC-L
+Text Label 4150 6850 2    50   ~ 0
+VCC
+Text Label 4150 7050 2    50   ~ 0
+GND
+Text Label 4400 4600 1    50   ~ 0
+GND
+Text Label 4400 5600 1    50   ~ 0
+GND
 $EndSCHEMATC
