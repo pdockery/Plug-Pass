@@ -5,8 +5,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Plug-Pass 120V Switch"
-Date "2020-09-17"
-Rev "v3.0"
+Date "2021-01-04"
+Rev "v3.1"
 Comp "Clatskanie People's Utility District"
 Comment1 "designed by: Paul Dockery, Power Manager"
 Comment2 ""
@@ -285,11 +285,11 @@ F 12 "Active" H 6100 8150 60  0001 L CNN "Status"
 	0    1    1    0   
 $EndComp
 Text Label 8000 1900 0    50   ~ 0
-MISO
+MISO-1
 Text Label 8000 2000 0    50   ~ 0
-MOSI
+MOSI-1
 Text Label 8000 1800 0    50   ~ 0
-SCK
+SCK-1
 Text Label 8000 2100 0    50   ~ 0
 SS
 NoConn ~ 8000 2200
@@ -604,9 +604,7 @@ F 3 "" H 10050 6300 50  0001 C CNN
 $EndComp
 Text GLabel 3800 6800 3    50   Input ~ 0
 RLY2
-Wire Wire Line
-	6650 4750 7350 4750
-Text GLabel 7350 4750 2    50   Input ~ 0
+Text GLabel 7300 4750 2    50   Input ~ 0
 RLY2
 Wire Wire Line
 	6050 5950 6050 6050
@@ -776,14 +774,6 @@ F 3 "" H 4950 4600 50  0001 C CNN
 	1    4950 4600
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5650 5450 4400 5450
-Wire Wire Line
-	5650 5550 4850 5550
-Wire Wire Line
-	4850 5550 4850 5650
-Wire Wire Line
-	4850 5650 4400 5650
 NoConn ~ 5650 4650
 NoConn ~ 5650 4750
 NoConn ~ 5650 4850
@@ -821,8 +811,6 @@ F 6 "Murata Electronics" H 8200 4750 50  0001 C CNN "Manufacturer"
 $EndComp
 Wire Wire Line
 	7950 4750 8100 4750
-Text GLabel 7950 4750 0    50   Input ~ 0
-RESET
 Wire Wire Line
 	6650 5350 7050 5350
 Text GLabel 7050 5350 2    50   Input ~ 0
@@ -975,52 +963,50 @@ $EndComp
 $Comp
 L Plug_Pass:SW_Push SW1
 U 1 1 5F810C3E
-P 2600 5000
-F 0 "SW1" H 2600 5285 50  0000 C CNN
-F 1 "RESET" H 2600 5194 50  0000 C CNN
-F 2 "Plug_Pass:C&K_PTS820_NO_HOLES" H 2600 5200 50  0001 C CNN
-F 3 "~" H 2600 5200 50  0001 C CNN
-F 4 "Tactile Switches Microminiature SMT Top Actuated" H 2600 5000 50  0001 C CNN "Description"
-F 5 "PTS820J25KSMTRLFS" H 2600 5000 50  0001 C CNN "MPN"
-F 6 "C&K" H 2600 5000 50  0001 C CNN "Manufacturer"
-	1    2600 5000
+P 2550 5600
+F 0 "SW1" H 2550 5950 50  0000 C CNN
+F 1 "RESET" H 2550 5850 50  0000 C CNN
+F 2 "Plug_Pass:C&K_PTS820_NO_HOLES" H 2550 5800 50  0001 C CNN
+F 3 "~" H 2550 5800 50  0001 C CNN
+F 4 "Tactile Switches Microminiature SMT Top Actuated" H 2550 5600 50  0001 C CNN "Description"
+F 5 "PTS820J25KSMTRLFS" H 2550 5600 50  0001 C CNN "MPN"
+F 6 "C&K" H 2550 5600 50  0001 C CNN "Manufacturer"
+	1    2550 5600
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2400 5000 2250 5000
+	2350 5600 2200 5600
 Wire Wire Line
-	2250 5000 2250 5100
+	2200 5600 2200 5700
 $Comp
 L Plug_Pass:GNDREF #PWR0125
 U 1 1 5F818CB3
-P 2250 5100
-F 0 "#PWR0125" H 2250 4850 50  0001 C CNN
-F 1 "GNDREF" H 2250 4950 50  0000 C CNN
-F 2 "" H 2250 5100 50  0001 C CNN
-F 3 "" H 2250 5100 50  0001 C CNN
-	1    2250 5100
+P 2200 5700
+F 0 "#PWR0125" H 2200 5450 50  0001 C CNN
+F 1 "GNDREF" H 2200 5550 50  0000 C CNN
+F 2 "" H 2200 5700 50  0001 C CNN
+F 3 "" H 2200 5700 50  0001 C CNN
+	1    2200 5700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2800 5000 2900 5000
+	2750 5600 2850 5600
 $Comp
 L Plug_Pass:+5V #PWR0126
 U 1 1 5F82092C
-P 3450 5000
-F 0 "#PWR0126" H 3450 4850 50  0001 C CNN
-F 1 "+5V" H 3465 5173 50  0000 C CNN
-F 2 "" H 3450 5000 50  0001 C CNN
-F 3 "" H 3450 5000 50  0001 C CNN
-	1    3450 5000
+P 3400 5600
+F 0 "#PWR0126" H 3400 5450 50  0001 C CNN
+F 1 "+5V" H 3415 5773 50  0000 C CNN
+F 2 "" H 3400 5600 50  0001 C CNN
+F 3 "" H 3400 5600 50  0001 C CNN
+	1    3400 5600
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	2900 5000 2900 5100
-Connection ~ 2900 5000
+	2850 5600 2850 5700
+Connection ~ 2850 5600
 Wire Wire Line
-	2900 5000 3000 5000
-Text GLabel 2900 5100 3    50   Input ~ 0
-RESET
+	2850 5600 2950 5600
 Wire Wire Line
 	10050 6100 10050 6300
 $Comp
@@ -1062,12 +1048,6 @@ Wire Wire Line
 	8000 2100 8450 2100
 Text GLabel 8450 2100 2    50   Input ~ 0
 SS
-Text GLabel 8450 2000 2    50   Input ~ 0
-MOSI
-Text GLabel 8450 1900 2    50   Input ~ 0
-MISO
-Text GLabel 8450 1800 2    50   Input ~ 0
-SCK
 $Comp
 L Plug_Pass:GNDREF #PWR0129
 U 1 1 5F8C7811
@@ -2206,7 +2186,7 @@ Connection ~ 8350 2500
 Wire Wire Line
 	8350 2800 8350 2900
 Wire Wire Line
-	3400 5000 3450 5000
+	3350 5600 3400 5600
 Connection ~ 2850 6700
 Wire Wire Line
 	7300 4450 7350 4450
@@ -2215,30 +2195,30 @@ Wire Wire Line
 $Comp
 L Plug_Pass:0011_CSTCE16M0V53-R0 Y2
 U 1 1 5F9905BD
-P 4400 5550
-F 0 "Y2" H 4277 5866 59  0000 C CNN
-F 1 "16MHz" H 4277 5761 59  0000 C CNN
-F 2 "Plug_Pass:CSTNE16M0V51Z000R0" H 4400 5550 50  0001 C CNN
-F 3 "" H 4400 5550 50  0001 C CNN
-F 4 "Resonators 16.0MHz 5pF 0.5% Cer Res Thk Exp mode" H 4400 5550 50  0001 C CNN "Description"
-F 5 "CSTNE16M0V51Z000R0" H 4400 5550 50  0001 C CNN "MPN"
-F 6 "Murata Electronics" H 4400 5550 50  0001 C CNN "Manufacturer"
-	1    4400 5550
+P 5200 5550
+F 0 "Y2" H 4900 5650 59  0000 C CNN
+F 1 "16MHz" H 5150 5350 59  0000 C CNN
+F 2 "Plug_Pass:CSTNE16M0V51Z000R0" H 5200 5550 50  0001 C CNN
+F 3 "" H 5200 5550 50  0001 C CNN
+F 4 "Resonators 16.0MHz 5pF 0.5% Cer Res Thk Exp mode" H 5200 5550 50  0001 C CNN "Description"
+F 5 "CSTNE16M0V51Z000R0" H 5200 5550 50  0001 C CNN "MPN"
+F 6 "Murata Electronics" H 5200 5550 50  0001 C CNN "Manufacturer"
+	1    5200 5550
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4100 5550 4050 5550
+	4900 5550 4850 5550
 Wire Wire Line
-	4050 5550 4050 5700
+	4850 5550 4850 5700
 $Comp
 L Plug_Pass:GNDREF #PWR0156
 U 1 1 5F9CC316
-P 4050 5700
-F 0 "#PWR0156" H 4050 5450 50  0001 C CNN
-F 1 "GNDREF" H 4050 5550 50  0000 C CNN
-F 2 "" H 4050 5700 50  0001 C CNN
-F 3 "" H 4050 5700 50  0001 C CNN
-	1    4050 5700
+P 4850 5700
+F 0 "#PWR0156" H 4850 5450 50  0001 C CNN
+F 1 "GNDREF" H 4850 5550 50  0000 C CNN
+F 2 "" H 4850 5700 50  0001 C CNN
+F 3 "" H 4850 5700 50  0001 C CNN
+	1    4850 5700
 	-1   0    0    -1  
 $EndComp
 $Comp
@@ -2292,7 +2272,7 @@ Wire Wire Line
 Wire Wire Line
 	7450 6150 7900 6150
 Text GLabel 7450 5750 0    50   Input ~ 0
-SCK
+SCK-1
 $Comp
 L Plug_Pass:LED_Small L1
 U 1 1 5FB3B9BA
@@ -2597,16 +2577,16 @@ F 6 "Bourns" H 7700 6050 50  0001 C CNN "Manufacturer"
 $EndComp
 $Comp
 L Plug_Pass:0005_064R_1K___CAY16-102J4LF RP1
-U 2 1 5F82042D
-P 3200 5000
-F 0 "RP1" H 3259 5046 50  0000 L CNN
-F 1 "1k" H 3259 4955 50  0000 L CNN
-F 2 "Plug_Pass:CAY16" H 3200 5000 50  0001 C CNN
-F 3 "~" H 3200 5000 50  0001 C CNN
-F 4 "Resistor Networks & Arrays 1K 5% Convex 4resistors" H 3200 5000 50  0001 C CNN "Description"
-F 5 "CAY16-102J4LF" H 3200 5000 50  0001 C CNN "MPN"
-F 6 "Bourns" H 3200 5000 50  0001 C CNN "Manufacturer"
-	2    3200 5000
+U 3 1 5F82042D
+P 3150 5600
+F 0 "RP1" H 3209 5646 50  0000 L CNN
+F 1 "1k" H 3209 5555 50  0000 L CNN
+F 2 "Plug_Pass:CAY16" H 3150 5600 50  0001 C CNN
+F 3 "~" H 3150 5600 50  0001 C CNN
+F 4 "Resistor Networks & Arrays 1K 5% Convex 4resistors" H 3150 5600 50  0001 C CNN "Description"
+F 5 "CAY16-102J4LF" H 3150 5600 50  0001 C CNN "MPN"
+F 6 "Bourns" H 3150 5600 50  0001 C CNN "Manufacturer"
+	3    3150 5600
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -2621,11 +2601,11 @@ F 4 "Resistor Networks & Arrays 1K 5% Convex 4resistors" H 7100 4600 50  0001 C 
 F 5 "CAY16-102J4LF" H 7100 4600 50  0001 C CNN "MPN"
 F 6 "Bourns" H 7100 4600 50  0001 C CNN "Manufacturer"
 	4    7100 4600
-	-1   0    0    1   
+	1    0    0    -1  
 $EndComp
 $Comp
 L Plug_Pass:0005_064R_1K___CAY16-102J4LF RP1
-U 3 1 5F89AE7B
+U 2 1 5F89AE7B
 P 7100 4450
 F 0 "RP1" H 7159 4496 50  0000 L CNN
 F 1 "1k" H 7159 4405 50  0000 L CNN
@@ -2634,8 +2614,8 @@ F 3 "~" H 7100 4450 50  0001 C CNN
 F 4 "Resistor Networks & Arrays 1K 5% Convex 4resistors" H 7100 4450 50  0001 C CNN "Description"
 F 5 "CAY16-102J4LF" H 7100 4450 50  0001 C CNN "MPN"
 F 6 "Bourns" H 7100 4450 50  0001 C CNN "Manufacturer"
-	3    7100 4450
-	-1   0    0    1   
+	2    7100 4450
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	3650 3350 3650 3650
@@ -2684,33 +2664,33 @@ Wire Wire Line
 Wire Wire Line
 	3050 3600 3050 3500
 Wire Wire Line
-	2700 5250 2700 5300
+	2650 5850 2650 5900
 Wire Wire Line
-	2700 5300 2650 5300
+	2650 5900 2600 5900
 Wire Wire Line
-	2500 5300 2500 5250
+	2450 5900 2450 5850
 Wire Wire Line
-	2550 5250 2550 5300
-Connection ~ 2550 5300
+	2500 5850 2500 5900
+Connection ~ 2500 5900
 Wire Wire Line
-	2550 5300 2500 5300
+	2500 5900 2450 5900
 Wire Wire Line
-	2650 5250 2650 5300
-Connection ~ 2650 5300
+	2600 5850 2600 5900
+Connection ~ 2600 5900
 Wire Wire Line
-	2650 5300 2550 5300
+	2600 5900 2500 5900
 Wire Wire Line
-	2500 5300 2500 5350
-Connection ~ 2500 5300
+	2450 5900 2450 5950
+Connection ~ 2450 5900
 $Comp
 L Plug_Pass:GNDREF #PWR0112
 U 1 1 5F812E92
-P 2500 5350
-F 0 "#PWR0112" H 2500 5100 50  0001 C CNN
-F 1 "GNDREF" H 2500 5200 50  0000 C CNN
-F 2 "" H 2500 5350 50  0001 C CNN
-F 3 "" H 2500 5350 50  0001 C CNN
-	1    2500 5350
+P 2450 5950
+F 0 "#PWR0112" H 2450 5700 50  0001 C CNN
+F 1 "GNDREF" H 2450 5800 50  0000 C CNN
+F 2 "" H 2450 5950 50  0001 C CNN
+F 3 "" H 2450 5950 50  0001 C CNN
+	1    2450 5950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -2749,23 +2729,23 @@ Wire Wire Line
 $Comp
 L Plug_Pass:MountingHole_Pad GND3
 U 1 1 5F8E882E
-P 1300 5050
-F 0 "GND3" V 1400 5250 50  0000 C CNN
-F 1 "GND" V 1200 5200 50  0000 C CNN
-F 2 "Plug_Pass:Ground_Pad" H 1300 5050 50  0001 C CNN
-F 3 "~" H 1300 5050 50  0001 C CNN
-	1    1300 5050
+P 1250 5650
+F 0 "GND3" V 1250 5900 50  0000 C CNN
+F 1 "GND" V 1150 5800 50  0000 C CNN
+F 2 "Plug_Pass:Ground_Pad" H 1250 5650 50  0001 C CNN
+F 3 "~" H 1250 5650 50  0001 C CNN
+	1    1250 5650
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Plug_Pass:MountingHole_Pad GND2
 U 1 1 5F8E8C20
-P 1300 4850
-F 0 "GND2" V 1400 5050 50  0000 C CNN
-F 1 "GND" V 1200 5000 50  0000 C CNN
-F 2 "Plug_Pass:Ground_Pad" H 1300 4850 50  0001 C CNN
-F 3 "~" H 1300 4850 50  0001 C CNN
-	1    1300 4850
+P 1250 5450
+F 0 "GND2" V 1350 5650 50  0000 C CNN
+F 1 "GND" V 1150 5600 50  0000 C CNN
+F 2 "Plug_Pass:Ground_Pad" H 1250 5450 50  0001 C CNN
+F 3 "~" H 1250 5450 50  0001 C CNN
+	1    1250 5450
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
@@ -2773,55 +2753,185 @@ Wire Wire Line
 $Comp
 L Plug_Pass:MountingHole_Pad GND4
 U 1 1 5F90FFA1
-P 1300 5250
-F 0 "GND4" V 1400 5450 50  0000 C CNN
-F 1 "GND" V 1200 5400 50  0000 C CNN
-F 2 "Plug_Pass:Ground_Pad" H 1300 5250 50  0001 C CNN
-F 3 "~" H 1300 5250 50  0001 C CNN
-	1    1300 5250
+P 1250 5850
+F 0 "GND4" V 1250 6100 50  0000 C CNN
+F 1 "GND" V 1150 6000 50  0000 C CNN
+F 2 "Plug_Pass:Ground_Pad" H 1250 5850 50  0001 C CNN
+F 3 "~" H 1250 5850 50  0001 C CNN
+	1    1250 5850
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Plug_Pass:MountingHole_Pad GND5
 U 1 1 5F91025D
-P 1300 5450
-F 0 "GND5" V 1400 5650 50  0000 C CNN
-F 1 "GND" V 1200 5600 50  0000 C CNN
-F 2 "Plug_Pass:Ground_Pad" H 1300 5450 50  0001 C CNN
-F 3 "~" H 1300 5450 50  0001 C CNN
-	1    1300 5450
+P 1250 6050
+F 0 "GND5" V 1250 6300 50  0000 C CNN
+F 1 "GND" V 1150 6200 50  0000 C CNN
+F 2 "Plug_Pass:Ground_Pad" H 1250 6050 50  0001 C CNN
+F 3 "~" H 1250 6050 50  0001 C CNN
+	1    1250 6050
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	1400 4850 1450 4850
+	1350 5450 1400 5450
 Wire Wire Line
-	1450 4850 1450 5050
+	1400 5450 1400 5650
 Wire Wire Line
-	1450 5450 1400 5450
+	1400 6050 1350 6050
 Wire Wire Line
-	1400 5050 1450 5050
-Connection ~ 1450 5050
+	1350 5650 1400 5650
+Connection ~ 1400 5650
 Wire Wire Line
-	1450 5050 1450 5250
+	1400 5650 1400 5850
 Wire Wire Line
-	1400 5250 1450 5250
-Connection ~ 1450 5250
+	1350 5850 1400 5850
+Connection ~ 1400 5850
 Wire Wire Line
-	1450 5250 1450 5450
+	1400 5850 1400 6050
 $Comp
 L Plug_Pass:GNDREF #PWR02
 U 1 1 5F980924
-P 1550 5500
-F 0 "#PWR02" H 1550 5250 50  0001 C CNN
-F 1 "GNDREF" H 1550 5350 50  0000 C CNN
-F 2 "" H 1550 5500 50  0001 C CNN
-F 3 "" H 1550 5500 50  0001 C CNN
-	1    1550 5500
+P 1500 6100
+F 0 "#PWR02" H 1500 5850 50  0001 C CNN
+F 1 "GNDREF" H 1500 5950 50  0000 C CNN
+F 2 "" H 1500 6100 50  0001 C CNN
+F 3 "" H 1500 6100 50  0001 C CNN
+	1    1500 6100
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	1450 5450 1550 5450
+	1400 6050 1500 6050
 Wire Wire Line
-	1550 5450 1550 5500
-Connection ~ 1450 5450
+	1500 6050 1500 6100
+Connection ~ 1400 6050
+$Comp
+L Plug_Pass:Conn_01x06 J3
+U 1 1 5FDB6F18
+P 1200 4700
+F 0 "J3" H 1250 4300 50  0000 C CNN
+F 1 "Conn_02x03" H 1200 5050 50  0000 C CNN
+F 2 "Plug_Pass:PinHeader_2x03_P1.00mm_Vertical_SMD" H 1200 4700 50  0001 C CNN
+F 3 "~" H 1200 4700 50  0001 C CNN
+	1    1200 4700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1400 4500 1450 4500
+Wire Wire Line
+	1400 4600 1450 4600
+Wire Wire Line
+	1400 4700 1450 4700
+Text GLabel 3850 4700 2    50   Input ~ 0
+RESET
+$Comp
+L Plug_Pass:GNDREF #PWR04
+U 1 1 5FECF80A
+P 1900 4850
+F 0 "#PWR04" H 1900 4600 50  0001 C CNN
+F 1 "GNDREF" H 1900 4700 50  0000 C CNN
+F 2 "" H 1900 4850 50  0001 C CNN
+F 3 "" H 1900 4850 50  0001 C CNN
+	1    1900 4850
+	1    0    0    -1  
+$EndComp
+Text Label 5700 2600 2    50   ~ 0
+VMID
+Text Label 5700 2700 2    50   ~ 0
+RX1
+Text GLabel 3850 4400 2    50   Input ~ 0
+MOSI
+Text GLabel 3850 4600 2    50   Input ~ 0
+SCK
+Wire Wire Line
+	1400 4900 1450 4900
+$Comp
+L Plug_Pass:+5V #PWR03
+U 1 1 5FEA5E98
+P 1450 4600
+F 0 "#PWR03" H 1450 4450 50  0001 C CNN
+F 1 "+5V" V 1450 4800 50  0000 C CNN
+F 2 "" H 1450 4600 50  0001 C CNN
+F 3 "" H 1450 4600 50  0001 C CNN
+	1    1450 4600
+	0    1    1    0   
+$EndComp
+Text GLabel 3850 4500 2    50   Input ~ 0
+MISO
+Wire Wire Line
+	3850 4400 3750 4400
+Wire Wire Line
+	3850 4500 3750 4500
+Wire Wire Line
+	3850 4600 3750 4600
+Wire Wire Line
+	3850 4700 3750 4700
+Text GLabel 2800 4400 0    50   Input ~ 0
+MOSI-1
+Text GLabel 2800 4500 0    50   Input ~ 0
+MISO-1
+Text GLabel 2800 4600 0    50   Input ~ 0
+SCK-1
+Text GLabel 2800 4700 0    50   Input ~ 0
+RESET-1
+Text GLabel 1450 4900 2    50   Input ~ 0
+MOSI
+Text GLabel 1450 4700 2    50   Input ~ 0
+MISO
+Text GLabel 1450 4500 2    50   Input ~ 0
+SCK
+Text GLabel 1450 4400 2    50   Input ~ 0
+RESET
+Wire Wire Line
+	2800 4400 2950 4400
+Wire Wire Line
+	2800 4500 2950 4500
+Wire Wire Line
+	2800 4600 2950 4600
+Wire Wire Line
+	2950 4700 2800 4700
+Text GLabel 8450 1800 2    50   Input ~ 0
+SCK-1
+Text GLabel 8450 1900 2    50   Input ~ 0
+MISO-1
+Text GLabel 8450 2000 2    50   Input ~ 0
+MOSI-1
+Text GLabel 7950 4750 0    50   Input ~ 0
+RESET-1
+Text GLabel 2850 5700 3    50   Input ~ 0
+RESET-1
+Wire Wire Line
+	7300 4750 6650 4750
+$Comp
+L Plug_Pass:218-4LPST S1
+U 1 1 5FED1E4C
+P 2950 4400
+F 0 "S1" H 3350 4665 50  0000 C CNN
+F 1 "218-4LPST" H 3350 4574 50  0000 C CNN
+F 2 "Plug_Pass:SOIC127P844X265-8N" H 3600 4500 50  0001 L CNN
+F 3 "https://www.ctscorp.com/wp-content/uploads/218.pdf" H 3600 4400 50  0001 L CNN
+F 4 "Half Pitch, SMD DIP Switch" H 3600 4300 50  0001 L CNN "Description"
+F 5 "2.65" H 3600 4200 50  0001 L CNN "Height"
+F 6 "CTS" H 3600 4100 50  0001 L CNN "Manufacturer_Name"
+F 7 "218-4LPST" H 3600 4000 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "774-2184LPST" H 3600 3900 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.co.uk/ProductDetail/CTS-Electronic-Components/218-4LPST?qs=qNzHFtQhdJ%252BULzIpw6MWbA%3D%3D" H 3600 3800 50  0001 L CNN "Mouser Price/Stock"
+F 10 "218-4LPST" H 3600 3700 50  0001 L CNN "Arrow Part Number"
+F 11 "https://www.arrow.com/en/products/218-4lpst/cts" H 3600 3600 50  0001 L CNN "Arrow Price/Stock"
+	1    2950 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1900 4800 1900 4850
+Wire Wire Line
+	1450 4400 1400 4400
+Wire Wire Line
+	1400 4800 1900 4800
+Wire Wire Line
+	5650 5450 5200 5450
+Wire Wire Line
+	5650 5550 5400 5550
+Wire Wire Line
+	5400 5550 5400 5650
+Wire Wire Line
+	5400 5650 5200 5650
 $EndSCHEMATC

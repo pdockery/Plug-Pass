@@ -20,6 +20,16 @@ D Coin Cell Battery Holders BATTERY HOLDER FOR CR1220 / 1225 Tape and Reel
 F http://www.keystoneelectronics.net/ENG._DEPT/WEB_ORACLE/PDF/PDF%20CAT%20NO%20DRAWINGS/1000-1999/1072.PDF
 $ENDCMP
 #
+$CMP 204-124ST
+D 4 Way Surface Mount DIP Switch Single Pole Double Throw (SPDT), Standard Actuator
+F https://www.ctscorp.com/wp-content/uploads/204.pdf
+$ENDCMP
+#
+$CMP 218-4LPST
+D Half Pitch, SMD DIP Switch
+F https://www.ctscorp.com/wp-content/uploads/218.pdf
+$ENDCMP
+#
 $CMP 505568-0271
 D Headers & Wire Housings MicroLockPlus 1.25MM VERT HDR SR 2CKT BLK
 F https://www.molex.com/webdocs/datasheets/pdf/en-us/5055680271_PCB_HEADERS.pdf
