@@ -1,4 +1,7 @@
 #include <Arduino.h>
+#include "RelayManager.h"
+
+RelayManager mRelayManager(2);
 
 void setup()
 {
@@ -8,7 +11,9 @@ void setup()
 void loop()
 {
   Serial.println("HI");
-  delay(500);
+  mRelayManager.TurnOn();
+  delay(2000);
   Serial.println("BYE");
-  delay(500);
+  mRelayManager.TurnOff();
+  delay(2000);
 }
