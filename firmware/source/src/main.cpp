@@ -1,9 +1,14 @@
 #include <Arduino.h>
 
-void setup() {
-  // put your setup code here, to run once:
+void setup()
+{
+  Serial.begin(115200);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop()
+{
+  Serial.println("HI");
+  delay(500);
+  Serial.println("BYE");
+  delay(500);
 }
