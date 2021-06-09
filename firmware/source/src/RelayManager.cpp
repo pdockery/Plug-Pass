@@ -16,3 +16,13 @@ void RelayManager::TurnOn()
 {
   digitalWrite(mPin, HIGH);
 }
+
+void RelayManager::Test()
+{
+  delay(2000);
+  Serial.println("HI");
+  TurnOff();
+  delay(2000);
+  Serial.println("BYE");
+  TurnOn();
+}

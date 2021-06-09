@@ -7,6 +7,7 @@ public:
   RelayManager(int Pin);
   void TurnOff();
   void TurnOn();
+  void Test();
 
 private:
   int mPin;
