@@ -1,0 +1,22 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# CC0603JRNPO9BN220
+#
+DEF CC0603JRNPO9BN220 C 0 40 N N 1 L N
+F0 "C" -160 90 50 H V L BNN
+F1 "CC0603JRNPO9BN220" -160 -160 50 H V L BNN
+F2 "CAPC1608X90" 0 0 50 H I L BNN
+F3 "" 0 0 50 H I L BNN
+F4 "YAGEO" 0 0 50 H I L BNN "MANUFACTURER"
+DRAW
+P 4 0 0 0 -100 10 60 10 60 -10 -100 -10 F
+P 4 0 0 0 -60 10 100 10 100 -10 -60 -10 F
+X ~ 1 -220 0 200 R 40 40 0 0 P 
+X ~ 2 220 0 200 L 40 40 0 0 P 
+ENDDRAW
+ENDDEF
+#
+# End Library

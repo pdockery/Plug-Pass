@@ -1,3 +1,5 @@
 (fp_lib_table
   (lib (name Plug_Pass)(type KiCad)(uri ${KIPRJMOD}/Plug_Pass.pretty)(options "")(descr ""))
+  (lib (name footprints)(type KiCad)(uri ${KIPRJMOD}/Update3-2/ul_LD1117V33/KiCAD/2021-06-09_00-46-52/footprints.pretty)(options "")(descr ""))
+  (lib (name ECS-51-20-4)(type KiCad)(uri ${KIPRJMOD}/Update3-2/ECS-51-20-4)(options "")(descr ""))
 )
