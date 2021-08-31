@@ -1,4 +1,4 @@
-update=2020-08-20 11:30:27 AM
+update=2021-01-04 11:14:38 AM
 version=1
 last_client=kicad
 [cvpcb]
@@ -26,12 +26,15 @@ MinMicroViaDiameter=0.508
 MinMicroViaDrill=0.254
 MinHoleToHole=0.254
 TrackWidth1=0.254
-TrackWidth2=0.508
-TrackWidth3=0.762
+TrackWidth2=0.1778
+TrackWidth3=0.508
+TrackWidth4=0.762
 ViaDiameter1=0.762
 ViaDrill1=0.381
-ViaDiameter2=1.16
-ViaDrill2=0.508
+ViaDiameter2=0.508
+ViaDrill2=0.254
+ViaDiameter3=1.16
+ViaDrill3=0.508
 dPairWidth1=0.2
 dPairGap1=0.25
 dPairViaGap1=0.25
@@ -240,7 +243,7 @@ dPairViaGap=0.25
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
-PlotDirectoryName=
+PlotDirectoryName=../../../Offline files/EV Charging Program/Plug-Pass Switch/
 SubpartIdSeparator=0
 SubpartFirstId=65
 NetFmtName=Pcbnew

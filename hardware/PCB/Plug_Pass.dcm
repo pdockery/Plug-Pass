@@ -1,5 +1,56 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP +3.3V
+D Power symbol creates a global label with name "+3.3V"
+K power-flag
+$ENDCMP
+#
+$CMP +3V3
+D Power symbol creates a global label with name "+3V3"
+K power-flag
+$ENDCMP
+#
+$CMP +5V
+D Power symbol creates a global label with name "+5V"
+K power-flag
+$ENDCMP
+#
+$CMP 1072
+D Coin Cell Battery Holders BATTERY HOLDER FOR CR1220 / 1225 Tape and Reel
+F http://www.keystoneelectronics.net/ENG._DEPT/WEB_ORACLE/PDF/PDF%20CAT%20NO%20DRAWINGS/1000-1999/1072.PDF
+$ENDCMP
+#
+$CMP 204-124ST
+D 4 Way Surface Mount DIP Switch Single Pole Double Throw (SPDT), Standard Actuator
+F https://www.ctscorp.com/wp-content/uploads/204.pdf
+$ENDCMP
+#
+$CMP 218-4LPST
+D Half Pitch, SMD DIP Switch
+F https://www.ctscorp.com/wp-content/uploads/218.pdf
+$ENDCMP
+#
+$CMP 505568-0271
+D Headers & Wire Housings MicroLockPlus 1.25MM VERT HDR SR 2CKT BLK
+F https://www.molex.com/webdocs/datasheets/pdf/en-us/5055680271_PCB_HEADERS.pdf
+$ENDCMP
+#
+$CMP 7M-27.120MAAJ-T
+D Crystal 27.12MHz +/-30ppm (Tol) +/-30ppm (Stability) 18pF FUND 60Ohm 4-Pin SMD T/R
+F https://componentsearchengine.com/Datasheets/1/7M-27.120MAAJ-T.pdf
+$ENDCMP
+#
+$CMP 865250340002
+D Wurth Elektronik 4.7F 16V dc Aluminium Electrolytic Capacitor, Surface Mount 5.5 (Dia.) x 3.85mm +85C 5.5mm 1mm
+F https://componentsearchengine.com/Datasheets/1/865250340002.pdf
+$ENDCMP
+#
+$CMP ATMEGA328P-AUR
+D IC MCU 8BIT 32KB FLASH 32TQFP
+K ATMEGA328P-AURCT-ND AVR® ATmega
+F http://www.microchip.com/mymicrochip/filehandler.aspx?ddocname=en608326
+$ENDCMP
+#
 $CMP Arduino_Nano_v2.x
 D Arduino Nano v2.x
 K Arduino nano microcontroller module USB
@@ -10,6 +61,24 @@ $CMP Arduino_Nano_v3.x
 D Arduino Nano v3.x
 K Arduino nano microcontroller module USB
 F http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf
+$ENDCMP
+#
+$CMP CP_Small
+D Polarized capacitor, small symbol
+K cap capacitor
+F ~
+$ENDCMP
+#
+$CMP C_Small
+D Unpolarized capacitor, small symbol
+K capacitor cap
+F ~
+$ENDCMP
+#
+$CMP Conn_01x02
+D Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)
+K connector
+F ~
 $ENDCMP
 #
 $CMP Conn_01x06
@@ -78,10 +147,40 @@ K wall socket 110VAC 220VAC
 F ~
 $ENDCMP
 #
+$CMP Crystal_GND24_Small
+D Four pin crystal, GND on pins 2 and 4, small symbol
+K quartz ceramic resonator oscillator
+F ~
+$ENDCMP
+#
 $CMP DS3231M
 D Extremely Accurate I2C-Integrated RTC/TCXO/Crystal SOIC-16
 K RTC TCXO Realtime Time Clock Crystal Oscillator I2C
 F http://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+$ENDCMP
+#
+$CMP DS3231MZ
+D ±5ppm, I2C Real-Time Clock SOIC-8
+K RTC TCXO Realtime Time Clock MEMS I2C
+F http://datasheets.maximintegrated.com/en/ds/DS3231M.pdf
+$ENDCMP
+#
+$CMP D_Schottky_Small
+D Schottky diode, small symbol
+K diode Schottky
+F ~
+$ENDCMP
+#
+$CMP FT232RL-REEL
+D IC USB FS SERIAL UART 28-SSOP
+K 768-1007-1-ND USBmadeEZ-UART
+F https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf
+$ENDCMP
+#
+$CMP Ferrite_Bead_Small
+D Ferrite bead, small symbol
+K L ferrite bead inductor filter
+F ~
 $ENDCMP
 #
 $CMP G5LE-14_DC5
@@ -99,6 +198,30 @@ $ENDCMP
 $CMP GNDREF
 D Power symbol creates a global label with name "GNDREF" , reference supply ground
 K power-flag
+$ENDCMP
+#
+$CMP IRM-03-12
+D 12V, 3W, AC-DC module power supply, MeanWell
+K 12V 3W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-03/IRM-03-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-03-15
+D 15V, 3W, AC-DC module power supply, MeanWell
+K 15V 3W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-03/IRM-03-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-03-24
+D 24V, 3W, AC-DC module power supply, MeanWell
+K 24V 3W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-03/IRM-03-SPEC.PDF
+$ENDCMP
+#
+$CMP IRM-03-5
+D 5V, 3W, AC-DC module power supply, MeanWell
+K 5V 3W AC-DC module power supply
+F https://www.meanwell.com/Upload/PDF/IRM-03/IRM-03-SPEC.PDF
 $ENDCMP
 #
 $CMP IRM-05-12
@@ -155,6 +278,24 @@ K 5V 10W AC-DC module power supply
 F https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF
 $ENDCMP
 #
+$CMP LED_Small
+D Light emitting diode, small symbol
+K LED diode light-emitting-diode
+F ~
+$ENDCMP
+#
+$CMP LM1117MPX-3_3_NOPB
+D IC REG LIN 3.3V 800MA SOT223-4
+K LM1117MPX-3.3/NOPBCT-ND LM1117-3.3
+F http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Flm1117
+$ENDCMP
+#
+$CMP L_Small
+D Inductor, small symbol
+K inductor choke coil reactor magnetic
+F ~
+$ENDCMP
+#
 $CMP MountingHole_Pad
 D Mounting Hole with connection
 K mounting hole
@@ -165,6 +306,12 @@ $CMP NRF24L01_Breakout
 D Ultra low power 2.4GHz RF Transceiver, Carrier PCB
 K Low Power RF Transciever breakout carrier
 F http://www.nordicsemi.com/eng/content/download/2730/34105/file/nRF24L01_Product_Specification_v2_0.pdf
+$ENDCMP
+#
+$CMP NX3225GD-8MHZ-STD-CRA-3
+D CRYSTAL 8.0000MHZ 8PF SMD
+K 644-1178-1-ND NX3225GD
+F http://www.ndk.com/images/products/catalog/c_NX3225GD-STD-CRA-3_e.pdf
 $ENDCMP
 #
 $CMP OSTTC022162
@@ -189,6 +336,18 @@ $CMP RF_PN532_Breakout
 D Ultra low power 2.4GHz RF Transceiver, Carrier PCB
 K Low Power RF Transciever breakout carrier
 F http://www.nordicsemi.com/eng/content/download/2730/34105/file/nRF24L01_Product_Specification_v2_0.pdf
+$ENDCMP
+#
+$CMP R_Small
+D Resistor, small symbol
+K R resistor
+F ~
+$ENDCMP
+#
+$CMP SW_Push
+D Push button switch, generic, two pins
+K switch normally-open pushbutton push-button
+F ~
 $ENDCMP
 #
 $CMP Screw_Terminal_01x01
@@ -221,8 +380,36 @@ K 277-17533-ND TDPT PHOENIX CONTACT
 F https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1017529_Ds.pdf
 $ENDCMP
 #
+$CMP Thermistor
+D Temperature dependent resistor
+K R res thermistor
+F ~
+$ENDCMP
+#
+$CMP USB_B_Micro
+D USB Micro Type B connector
+K connector USB micro
+F ~
+$ENDCMP
+#
+$CMP USB_B_Mini
+D USB Mini Type B connector
+K connector USB mini
+F ~
+$ENDCMP
+#
 $CMP VCC
 D Power symbol creates a global label with name "VCC"
+K power-flag
+$ENDCMP
+#
+$CMP VUSB
+D Power symbol creates a global label with name "VBUS"
+K power-flag
+$ENDCMP
+#
+$CMP V_LDO
+D Power symbol creates a global label with name "V_LDO"
 K power-flag
 $ENDCMP
 #
