@@ -1,4 +1,4 @@
-141050176364000
+146583855425049
 Plug_Pass
 1X01_ROUND
 
@@ -143,474 +143,496 @@ Plug_Pass
 C0603-ROUND
 <b>CAPACITOR</b><p>
 chip
-
+0
 0
 2
 2
 Plug_Pass
 CAPAE430X550N
 865080340003
-Capacitor Polarised
+0
 0
 2
 2
 Plug_Pass
 CAY16
 <b>BOURNS</b> Chip Resistor Array<p>
-Source: RS Component / BUORNS
-
+0
+0
 0
 8
 8
 Plug_Pass
 CHIPLED_0805
-<b>CHIPLED</b><p>
-Source: http://www.osram.convergy.de/ ... LG_R971.pdf
-
+0
+0
+0
 0
 2
 2
 Plug_Pass
-CHIPLED_0805_NOOUTLINE
-
-
+0
+0
+0
 0
 2
 2
 Plug_Pass
-CR1220
-
-
+0
+0
+0
 0
 3
 2
 Plug_Pass
-CRYSTAL_3.2X2.5
-3.2mm x 2.5mm Thin SMT Crystal
-
+0
+3
+0
 0
 4
 4
 Plug_Pass
-CSTNE16M0V51Z000R0
-CSTNE16M0V51Z000R0-3
-Crystal or Oscillator
+0
+0
+0
 0
 3
 3
 Plug_Pass
-Converter_ACDC_MeanWell_IRM-05-xx_THT
-http://www.meanwell.com/webapp/product/search.aspx?prod=IRM-05
-ACDC-Converter 5W   Meanwell IRM-05
+0
+0
+0
 0
 4
 4
 Plug_Pass
-Converter_ACDC_MeanWell_IRM-10-xx_THT
-http://www.meanwell.com/webapp/product/search.aspx?prod=IRM-10
-ACDC-Converter 10W   Meanwell IRM-10
+0
+0
+0
 0
 4
 4
 Plug_Pass
-Converter_ACDC_MeanWell_IRM-15-5_THT
-https://www.digikey.com/product-detail/en/mean-well-usa-inc/IRM-15-5/1866-3037-ND/7704662
-ACDC-Converter 15W   Meanwell IRM-15
+0
+0
+0
 0
 4
 4
 Plug_Pass
-DO220AAL
-
-
+0
+0
+0
 0
 2
 2
 Plug_Pass
-FD-1-1.5
-
-
+0
+0
+0
 0
 1
 1
 Plug_Pass
-FIDUCIAL-1X2.5
-
-
+0
+0
+0
 0
 1
 1
 Plug_Pass
-FIDUCIAL_1MM
-
-
+0
+0
+0
 0
 1
 1
 Plug_Pass
-FRAME
-
-
+0
+0
+0
 0
 0
 0
 Plug_Pass
-Ground_Pad
-
-
+0
+0
+0
 0
 1
 1
 Plug_Pass
-HEAD15-NOSS
-
-
+0
+0
+0
 0
 15
 15
 Plug_Pass
-HVQFN40-6X6
-<b>HVQFN40 </b><p>Plastic thermal enhanced very thin quad flat package; 40 terminals; body 6x6x0.85 mm;
-
+0
+0
+0
 0
 41
 41
 Plug_Pass
-IDC-Header_2x04_P2.54mm_Vertical
-Through hole straight IDC box header, 2x04, 2.54mm pitch, double rows
-Through hole IDC box header THT 2x04 2.54mm double row
+0
+0
+0
 0
 8
 8
 Plug_Pass
-IDC-Header_2x04_P2.54mm_Vertical_Small
-Through hole straight IDC box header, 2x04, 2.54mm pitch, double rows
-Through hole IDC box header THT 2x04 2.54mm double row
+0
+0
+0
 0
 8
 8
 Plug_Pass
-JUMPER3
-<b>JUMPER</b> - 3 Pins
-
+0
+0
+0
 0
 3
 3
 Plug_Pass
-LEDC1608X80N-AK
-
-
+0
+0
+0
+0
+7
+7
+Plug_Pass
+0
+0
+0
 0
 2
 2
 Plug_Pass
-LINEAR_SOT223
-<b>Small Outline Transistor</b>
-
+0
+0
+0
 0
 4
 4
 Plug_Pass
-MOLEX_1051330001
-
-
+0
+0
+0
 0
 8
 6
 Plug_Pass
-MOUNTINGHOLE_2.5_PLATED
-
-
+0
+0
+0
 0
 1
 1
 Plug_Pass
-MOUNTINGHOLE_3.0
-<b>MOUNTING HOLE</b> 3.0 mm with drill center
-
+0
+0
+0
 0
 0
 0
 Plug_Pass
-NANO_33_Footprint_SMD_Castell
-Through hole straight socket strip, 1x15, 2.54mm pitch
-Through hole socket strip THT 1x15 2.54mm single row
+0
+0
+0
 0
 30
 30
 Plug_Pass
-NANO_33_Socket_Castell
-Through hole straight socket strip, 1x15, 2.54mm pitch
-Through hole socket strip THT 1x15 2.54mm single row
+0
+0
+0
 0
 90
 30
 Plug_Pass
-OSHWLOGO_TOP_0.2
-
-
+0
+0
+0
 0
 0
 0
 Plug_Pass
-PCBFEAT-REV-040
-<b>Revision Level Field</b> - 40 mil<p>
-Set version with global board attribute '>REV'
+0
+0
+0
 
 0
 0
 0
-Plug_Pass
-PLH5-1_75
-
+0
+0
+0
 
 0
 2
 1
-Plug_Pass
-PN532_NFC_PinSocket
-Through hole straight socket strip, 1x08, 2.54mm pitch, single row (from Kicad 4.0.7), script generated
+0
+0
+0
 Through hole socket strip THT 1x08 2.54mm single row
 0
 8
 8
-Plug_Pass
-PinHeader_1x06_P1.00mm_Vertical
-Through hole straight pin header, 1x06, 1.00mm pitch, single row
+0
+0
+0
 Through hole pin header THT 1x06 1.00mm single row
 0
 6
 6
-Plug_Pass
-PinHeader_1x06_P2.54mm_Vertical
-Through hole straight pin header, 1x06, 2.54mm pitch, single row
+0
+0
+0
 Through hole pin header THT 1x06 2.54mm single row
 0
 6
 6
-Plug_Pass
-PinHeader_1x06_P2.54mm_Vertical_SMD_Pin1Left
-surface-mounted straight pin header, 1x06, 2.54mm pitch, single row, style 1 (pin 1 left)
+0
+0
+0
 Surface mounted pin header SMD 1x06 2.54mm single row style1 pin1 left
 0
 6
 6
-Plug_Pass
-PinHeader_1x08_P2.54mm_Vertical_SMD_Pin1Right
-surface-mounted straight pin header, 1x08, 2.54mm pitch, single row, style 2 (pin 1 right)
+0
+0
+0
 Surface mounted pin header SMD 1x08 2.54mm single row style2 pin1 right
 0
 8
 8
-Plug_Pass
-PinHeader_2x03_P1.00mm_Vertical_SMD
-surface-mounted straight pin header, 2x03, 1.00mm pitch, double rows
+0
+0
+0
 Surface mounted pin header SMD 2x03 1.00mm double row
 0
 6
 6
-Plug_Pass
-PinSocket_1x06_P1.00mm_Vertical
-Through hole straight socket strip, 1x06, 1.00mm pitch, single row (https://gct.co/files/drawings/bc065.pdf), script generated
+0
+0
+0
 Through hole socket strip THT 1x06 1.00mm single row
 0
 6
 6
-Plug_Pass
-PinSocket_1x06_P2.54mm_Vertical
-Through hole straight socket strip, 1x06, 2.54mm pitch, single row (from Kicad 4.0.7), script generated
+0
+0
+0
 Through hole socket strip THT 1x06 2.54mm single row
 0
 6
 6
-Plug_Pass
-PinSocket_1x08_P1.00mm_Vertical
-Through hole straight socket strip, 1x08, 1.00mm pitch, single row (https://gct.co/files/drawings/bc065.pdf), script generated
+0
+0
+0
 Through hole socket strip THT 1x08 1.00mm single row
 0
 8
 8
-Plug_Pass
-PinSocket_1x08_P2.54mm_Vertical
-Through hole straight socket strip, 1x08, 2.54mm pitch, single row (from Kicad 4.0.7), script generated
+0
+0
+0
 Through hole socket strip THT 1x08 2.54mm single row
 0
 8
 8
-Plug_Pass
-PinSocket_1x15_P1.00mm_Vertical
-Through hole straight socket strip, 1x15, 1.00mm pitch, single row (https://gct.co/files/drawings/bc065.pdf), script generated
+0
+0
+0
 Through hole socket strip THT 1x15 1.00mm single row
 0
 15
 15
-Plug_Pass
-PinSocket_1x15_P2.54mm_Vertical
-Through hole straight socket strip, 1x15, 2.54mm pitch, single row (from Kicad 4.0.7), script generated
+0
+0
+0
 Through hole socket strip THT 1x15 2.54mm single row
 0
 15
 15
-Plug_Pass
-PinSocket_2x04_P2.54mm_Vertical
-Through hole straight socket strip, 2x04, 2.54mm pitch, double cols (from Kicad 4.0.7), script generated
+0
+0
+0
 Through hole socket strip THT 2x04 2.54mm double row
 0
 8
 8
-Plug_Pass
-R0201
-<b>RESISTOR</b> chip<p>
+0
+0
+0
 Source: http://www.vishay.com/docs/20008/dcrcw.pdf
 
 0
 2
 2
-Plug_Pass
-RESONATOR
+0
+0
 
 
 0
 3
 3
-Plug_Pass
-RLY-T9AS1D22-5
+0
+0
 
 
 0
 4
 4
-Plug_Pass
-RLY-T9AS5D22-5
+0
+0
 
 
 0
 5
 5
-Plug_Pass
-RTC_PinHeader
+0
+0
 Through hole straight pin header, 1x06, 2.54mm pitch, single row
 Through hole pin header THT 1x06 2.54mm single row
 0
 6
 6
-Plug_Pass
-Relay_THT_G5V-1
+0
+0
 
 
 0
 6
 6
-Plug_Pass
-SMD_157SW
+0
+0
 
 
 0
 2
 2
-Plug_Pass
-SO16W
+0
+0
 <b>SMALL OUTLINE INTEGRATED CIRCUIT</b><p>
 wide body 7.5 mm/JEDEC MS-013AA
 
 0
 16
 16
-Plug_Pass
+0
 SOIC127P844X265-8N
 218-4LPST
 Switch
 0
 8
 8
-Plug_Pass
+0
 SOT23-5
 <b>Small Outline Transistor</b> - 5 Pin
 
 0
 5
 5
-Plug_Pass
+0
+SSOP-28_W5.30mm
+
+
+0
+28
+28
+0
 SSOP28
 
 
 0
 28
 28
-Plug_Pass
+0
 Socket_Strip_Arduino_1x15
 Through hole socket strip
 socket strip
 0
 15
 15
-Plug_Pass
+0
 TAN-A
 
 
 0
 2
 2
-Plug_Pass
+0
 TDPT_2P_5.08MM
 
 
 0
 4
 2
-Plug_Pass
+0
 TDPT_2P_6.35MM
 
 
 0
 2
 2
-Plug_Pass
+0
 TDPT_5P_10.16MM
 
 
 0
 10
 10
-Plug_Pass
+0
 TESTPOINT_ROUND_1MM
 
 
 0
 1
 1
-Plug_Pass
+0
 TP-1.00MM
 
 
 0
 1
 1
-Plug_Pass
+0
+TQFP-32_7x7mm
+http://www.atmel.com/Images/Atmel-8826-SEEPROM-PCB-Mounting-Guidelines-Surface-Mount-Packages-ApplicationNote.pdf
+
+0
+32
+32
+0
 Term_Block_1x5_P5.08mm
 http://www.on-shore.com/wp-content/uploads/2015/09/osttcxx2162.pdf
 
 0
 5
 5
-Plug_Pass
+0
 USB-MINI-B_2
 
 
 0
 9
 9
-Plug_Pass
+0
 VQFN32
 mlf-32
 
 0
 33
 33
-Plug_Pass
+0
 ZX62-AB-5PA
 
 
 0
 11
 11
+0

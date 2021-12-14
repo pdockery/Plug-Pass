@@ -1,0 +1,17 @@
+### Module positions - created on 10/14/21 14:29:26 ###
+### Printed by Pcbnew version kicad (5.1.10)-1
+## Unit = mm, Angle = deg.
+## Side : All
+# Ref     Val              Package                                             PosX       PosY       Rot  Side
+PS1       IRM-03-5         Converter_ACDC_MeanWell_IRM-03-xx_SMD           153.1620   -69.0880   90.0000  bottom
+C6        4.7uF            CAPAE430X550N                                   139.7000   -61.4680  180.0000  top
+C7        4.7uF            CAPAE430X550N                                   155.4480  -108.9660  180.0000  top
+IC1       DS3231M          SOIC-16W_7.5x10.3mm_P1.27mm                     139.4460   -72.1360    0.0000  top
+IC2       FT232RL          SSOP-28_W5.30mm                                 168.9100   -75.4380  180.0000  top
+IC3       ATMEGA328P-AUR   TQFP-32_7x7mm                                   155.4480   -73.1520   90.0000  top
+J2        Conn_01x08       PinSocket_1x08_P2.54mm_Vertical_SMD_Pin1Right   156.2100   -63.5000  270.0000  top
+PWR1      Green            LEDC1608X80N-AK                                 150.8760   -56.6800   90.0000  top
+RX1       Red              LEDC1608X80N-AK                                 173.4820   -93.2180   90.0000  top
+TX1       Green            LEDC1608X80N-AK                                 173.4820   -89.4080  270.0000  top
+U1        TC1108-3.3VDBTR  SOT230P700X180-4N                               138.9380   -81.7880    0.0000  top
+## End

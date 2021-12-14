@@ -21,8 +21,8 @@ void RelayManager::Test()
 {
   delay(2000);
   Serial.println("HI");
-  TurnOff();
-  delay(2000);
-  Serial.println("BYE");
   TurnOn();
+  delay(5000);
+  Serial.println("BYE");
+  TurnOff();
 }

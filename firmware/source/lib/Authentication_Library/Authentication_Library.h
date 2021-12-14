@@ -1,5 +1,12 @@
 #include "Arduino.h"
-#include <String.h>
+#include <EEPROM.h>
+
+#define PAIRED_KEY_BYTE_1_ADDRESS (6)
+#define PAIRED_KEY_BYTE_2_ADDRESS (7)
+#define PAIRED_KEY_BYTE_3_ADDRESS (8)
+#define PAIRED_KEY_BYTE_4_ADDRESS (9)
+
+uint32_t ConvertUint8toUint32(uint8_t int1, uint8_t int2, uint8_t int3, uint8_t int4);
 
 class KeyDatabase
 {
@@ -12,17 +19,21 @@ class KeyDatabase
 	// We then can have 68 random keys and expect that it will take about a year for any one of them to be guessed in a brute force.
 	// This should be sufficient for our purposes as this is a temporary solution and the means of attack for this product
 	// would likely be social engineering or theft to get a valid code or opening the box to splice wiring.
-	private:
-		int numKeys = 2;
-		String validKeys[2] = {
-			"A9873D79", // Company A
-			"B9873D79", // Company B
-		};
-	
-	public:
-		KeyDatabase();
-		~KeyDatabase();
-		bool Contains(String key);
-		int GetNumberOfKeys();
-		String GeneratePsuedoRandomKey();
+private:
+	const uint32_t AuthKey = 0x23593232;
+	const uint32_t AdminKey = 0x12583236;
+	const uint32_t ResetKey = 0x34849372;
+	const uint32_t CommuterInitKey = 0x64382396;
+
+public:
+	KeyDatabase();
+	uint32_t GetAuthKey() { return AuthKey; }
+	uint32_t GetAdminKey() { return AdminKey; }
+	uint32_t GetResetKey() { return ResetKey; }
+	uint32_t GetCommuterInitKey() { return CommuterInitKey; }
+	uint32_t GetCommuterPairedKey();
+	void CreateNewCommuterPairedKey();
+	void ResetCommuterPairedKey();
+	bool IsPaired();
+
 };
