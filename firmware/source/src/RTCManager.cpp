@@ -56,12 +56,12 @@ bool RTCManager::ShouldWeCharge()
 
 void RTCManager::StartChargeSession()
 {
-  SetChargeStart(GetNow() + CHARGE_LENGTH_RTC);
+  SetChargeStart(GetNow());
 }
 
 void RTCManager::EndChargeSession()
 {
-  SetChargeStart(GetNow());
+  SetChargeStart(GetNow() - CHARGE_LENGTH_RTC);
 }
 
 void RTCManager::PrintDateTime()
