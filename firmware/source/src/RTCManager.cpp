@@ -23,10 +23,10 @@ void RTCManager::Init()
     Serial.println("RTC did not lose power");
   }
   chargeStart = ConvertUint8toUint32(
-          EEPROM.read(CHARGE_START_BYTE_1_ADDRESS), 
-          EEPROM.read(CHARGE_START_BYTE_2_ADDRESS), 
-          EEPROM.read(CHARGE_START_BYTE_3_ADDRESS), 
-          EEPROM.read(CHARGE_START_BYTE_4_ADDRESS));
+      EEPROM.read(CHARGE_START_BYTE_1_ADDRESS),
+      EEPROM.read(CHARGE_START_BYTE_2_ADDRESS),
+      EEPROM.read(CHARGE_START_BYTE_3_ADDRESS),
+      EEPROM.read(CHARGE_START_BYTE_4_ADDRESS));
   Serial.print("TIME READ FROM EEPROM: ");
   Serial.println(chargeStart, HEX);
 }
@@ -57,6 +57,11 @@ bool RTCManager::ShouldWeCharge()
 void RTCManager::StartChargeSession()
 {
   SetChargeStart(GetNow() + CHARGE_LENGTH_RTC);
+}
+
+void RTCManager::EndChargeSession()
+{
+  SetChargeStart(GetNow());
 }
 
 void RTCManager::PrintDateTime()
