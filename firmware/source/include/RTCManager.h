@@ -19,6 +19,7 @@ public:
 
   bool ShouldWeCharge();
   void StartChargeSession();
+  void EndChargeSession();
   void PrintDateTime();
 
   uint32_t GetChargeStart() { return chargeStart; }

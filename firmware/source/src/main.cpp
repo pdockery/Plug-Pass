@@ -5,7 +5,6 @@
 #include "Authentication_Library.h"
 #include "RelayManager.h"
 #include "RTCManager.h"
-#include "NFCManager.h"
 
 #define RELAY_PIN 2
 
@@ -18,9 +17,8 @@ RelayManager relayManager(RELAY_PIN);
 RTCManager rtcManager;
 KeyDatabase keyDB;
 
-
-Adafruit_PN532 nfc{13, 12, 11, 10};
-uint8_t uid[] = {0, 0, 0, 0, 0, 0, 0}; // Buffer to store the returned UID after NFC card scan
+Adafruit_PN532 nfc{PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS};
+uint8_t uid[] = {0, 0, 0, 0, 0, 0, 0};
 uint8_t uidLength;
 
 void SetCardRecord(uint8_t page, uint32_t word)
@@ -194,8 +192,16 @@ void ControlLoop()
       if (cardType == keyDB.GetAdminKey())
       {
         Serial.println("We found an AdminKey!");
-        rtcManager.StartChargeSession();
-        relayManager.TurnOn();
+        if (rtcManager.ShouldWeCharge())
+        {
+          rtcManager.EndChargeSession();
+          relayManager.TurnOff();
+        }
+        else
+        {
+          rtcManager.StartChargeSession();
+          relayManager.TurnOn();
+        }
       }
       else if (cardType == keyDB.GetResetKey())
       {
@@ -219,8 +225,16 @@ void ControlLoop()
       else if (cardType == keyDB.GetCommuterPairedKey())
       {
         Serial.println("We found our PairedKey!");
-        rtcManager.StartChargeSession();
-        relayManager.TurnOn();
+        if (rtcManager.ShouldWeCharge())
+        {
+          rtcManager.EndChargeSession();
+          relayManager.TurnOff();
+        }
+        else
+        {
+          rtcManager.StartChargeSession();
+          relayManager.TurnOn();
+        }
       }
       else
       {
