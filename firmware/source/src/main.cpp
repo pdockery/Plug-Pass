@@ -245,7 +245,7 @@ void ControlLoop()
     {
       Serial.println("ERROR: Invalid AuthKey");
     }
-    delay(2000);
+    delay(5000);
   }
   else
   {
