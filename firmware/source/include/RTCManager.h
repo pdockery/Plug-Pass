@@ -3,8 +3,7 @@
 
 #include "RTClib.h"
 
-#define CHARGE_LENGTH (40) // in seconds
-#define CHARGE_LENGTH_RTC (CHARGE_LENGTH / 2)
+#define CHARGE_LENGTH_RTC (20)
 
 #define CHARGE_START_BYTE_1_ADDRESS (10)
 #define CHARGE_START_BYTE_2_ADDRESS (11)
